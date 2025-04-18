@@ -1,2 +1,6 @@
-numpydoc
+sphinx==5.3.0
+sphinx-rtd-theme==1.0.0
+numpydoc==1.2
 mock
+docutils<0.18
+
