@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5WriterBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>HDF5WriterBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/HDF5WriterBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hdf5writerbase">
+<h1>HDF5WriterBase<a class="headerlink" href="#hdf5writerbase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="HDF5WriterBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HDF5WriterBase</span></span><a class="headerlink" href="#HDF5WriterBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 file writer base class. This is not to be used directly. Instead, it should be subclassed to provide specific data writing functions. This class provides most basic properties like filename, file opening mode, file open status.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setFilename">
+<span class="sig-name descname"><span class="pre">setFilename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setFilename" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getFilename">
+<span class="sig-name descname"><span class="pre">getFilename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getFilename" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getIsOpen">
+<span class="sig-name descname"><span class="pre">getIsOpen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getIsOpen" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setMode">
+<span class="sig-name descname"><span class="pre">setMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getMode">
+<span class="sig-name descname"><span class="pre">getMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setChunkSize">
+<span class="sig-name descname"><span class="pre">setChunkSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setChunkSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getChunkSize">
+<span class="sig-name descname"><span class="pre">getChunkSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getChunkSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setCompressor">
+<span class="sig-name descname"><span class="pre">setCompressor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setCompressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getCompressor">
+<span class="sig-name descname"><span class="pre">getCompressor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getCompressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setCompression">
+<span class="sig-name descname"><span class="pre">setCompression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setCompression" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getCompression">
+<span class="sig-name descname"><span class="pre">getCompression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getCompression" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setStringAttr">
+<span class="sig-name descname"><span class="pre">setStringAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setStringAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getStringAttr">
+<span class="sig-name descname"><span class="pre">getStringAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getStringAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setDoubleAttr">
+<span class="sig-name descname"><span class="pre">setDoubleAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setDoubleAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getDoubleAttr">
+<span class="sig-name descname"><span class="pre">getDoubleAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getDoubleAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setLongAttr">
+<span class="sig-name descname"><span class="pre">setLongAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setLongAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getLongAttr">
+<span class="sig-name descname"><span class="pre">getLongAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getLongAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setStringVecAttr">
+<span class="sig-name descname"><span class="pre">setStringVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setStringVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getStringVecAttr">
+<span class="sig-name descname"><span class="pre">getStringVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getStringVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setDoubleVecAttr">
+<span class="sig-name descname"><span class="pre">setDoubleVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setDoubleVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getDoubleVecAttr">
+<span class="sig-name descname"><span class="pre">getDoubleVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getDoubleVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.setLongVecAttr">
+<span class="sig-name descname"><span class="pre">setLongVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.setLongVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.getLongVecAttr">
+<span class="sig-name descname"><span class="pre">getLongVecAttr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.getLongVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Write all buffer contents to file and clear the buffers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="HDF5WriterBase.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#HDF5WriterBase.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Close the underlying file. This is a safety measure so that file is not in an invalid state even if a crash happens at exit.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#HDF5WriterBase.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Name of the file associated with this HDF5 writer object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.isOpen">
+<span class="sig-name descname"><span class="pre">isOpen</span></span><a class="headerlink" href="#HDF5WriterBase.isOpen" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      True if this object has an open file handle.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#HDF5WriterBase.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Depending on mode, if file already exists, if mode=1, data will be appended to existing file, if mode=2, file will be truncated, if  mode=4, no writing will happen.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.chunkSize">
+<span class="sig-name descname"><span class="pre">chunkSize</span></span><a class="headerlink" href="#HDF5WriterBase.chunkSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Chunksize for writing array data. Defaults to 100.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.compressor">
+<span class="sig-name descname"><span class="pre">compressor</span></span><a class="headerlink" href="#HDF5WriterBase.compressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Compression type for array data. zlib and szip are supported. Defaults to zlib.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.compression">
+<span class="sig-name descname"><span class="pre">compression</span></span><a class="headerlink" href="#HDF5WriterBase.compression" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Compression level for array data. Defaults to 6.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.stringAttr">
+<span class="sig-name descname"><span class="pre">stringAttr</span></span><a class="headerlink" href="#HDF5WriterBase.stringAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,string (<em>lookup field</em>)      String attributes. The key is attribute name, value is attribute value (string).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.doubleAttr">
+<span class="sig-name descname"><span class="pre">doubleAttr</span></span><a class="headerlink" href="#HDF5WriterBase.doubleAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,double (<em>lookup field</em>)      Double precision floating point attributes. The key is attribute name, value is attribute value (double).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.longAttr">
+<span class="sig-name descname"><span class="pre">longAttr</span></span><a class="headerlink" href="#HDF5WriterBase.longAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,long (<em>lookup field</em>)      Long integer attributes. The key is attribute name, value is attribute value (long).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.stringVecAttr">
+<span class="sig-name descname"><span class="pre">stringVecAttr</span></span><a class="headerlink" href="#HDF5WriterBase.stringVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;string&gt; (<em>lookup field</em>)      String vector attributes. The key is attribute name, value is attribute value (string).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.doubleVecAttr">
+<span class="sig-name descname"><span class="pre">doubleVecAttr</span></span><a class="headerlink" href="#HDF5WriterBase.doubleVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;double&gt; (<em>lookup field</em>)      Double vector attributes. The key is attribute name, value is attribute value (vector of double).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="HDF5WriterBase.longVecAttr">
+<span class="sig-name descname"><span class="pre">longVecAttr</span></span><a class="headerlink" href="#HDF5WriterBase.longVecAttr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;long&gt; (<em>lookup field</em>)      Long integer vector attributes. The key is attribute name, value is attribute value (vector of long).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

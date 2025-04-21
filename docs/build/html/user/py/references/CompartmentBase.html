@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CompartmentBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>CompartmentBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/CompartmentBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compartmentbase">
+<h1>CompartmentBase<a class="headerlink" href="#compartmentbase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="CompartmentBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CompartmentBase</span></span><a class="headerlink" href="#CompartmentBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>CompartmentBase object, for branching neuron models.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#CompartmentBase.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process messages from the scheduler objects. The Process should be called _second_ in each clock tick, after the Init message.The first entry in the shared msg is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt and so on. The second entry is a MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.init">
+<span class="sig-name descname"><span class="pre">init</span></span><a class="headerlink" href="#CompartmentBase.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Init messages from the scheduler objects. Its job is to separate the compartmental calculations from the message passing. It doesn't really need to be shared, as it does not use the reinit part, but the scheduler objects expect this form of message for all scheduled output. The first entry is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt and so on. The second entry is a dummy MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#CompartmentBase.channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message from a compartment to channels. The first entry is a MsgDest for the info coming from the channel. It expects Gk and Ek from the channel as args. The second entry is a MsgSrc sending Vm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.axial">
+<span class="sig-name descname"><span class="pre">axial</span></span><a class="headerlink" href="#CompartmentBase.axial" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between asymmetric compartments. axial messages (this kind) connect up to raxial messages (defined below). The soma should use raxial messages to connect to the axial message of all the immediately adjacent dendritic compartments.This puts the (low) somatic resistance in series with these dendrites. Dendrites should then use raxial messages toconnect on to more distal dendrites. In other words, raxial messages should face outward from the soma. The first entry is a MsgSrc sending Vm to the axialFuncof the target compartment. The second entry is a MsgDest for the info coming from the other compt. It expects Ra and Vm from the other compt as args. Note that the message is named after the source type.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.raxial">
+<span class="sig-name descname"><span class="pre">raxial</span></span><a class="headerlink" href="#CompartmentBase.raxial" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a raxial shared message between asymmetric compartments. The first entry is a MsgDest for the info coming from the other compt. It expects Vm from the other compt as an arg. The second is a MsgSrc sending Ra and Vm to the raxialFunc of the target compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setVm">
+<span class="sig-name descname"><span class="pre">setVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getVm">
+<span class="sig-name descname"><span class="pre">getVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setCm">
+<span class="sig-name descname"><span class="pre">setCm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setCm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getCm">
+<span class="sig-name descname"><span class="pre">getCm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getCm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setEm">
+<span class="sig-name descname"><span class="pre">setEm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setEm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getEm">
+<span class="sig-name descname"><span class="pre">getEm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getEm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getIm">
+<span class="sig-name descname"><span class="pre">getIm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getIm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setInject">
+<span class="sig-name descname"><span class="pre">setInject</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setInject" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getInject">
+<span class="sig-name descname"><span class="pre">getInject</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getInject" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setInitVm">
+<span class="sig-name descname"><span class="pre">setInitVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setInitVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getInitVm">
+<span class="sig-name descname"><span class="pre">getInitVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getInitVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setRm">
+<span class="sig-name descname"><span class="pre">setRm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setRm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getRm">
+<span class="sig-name descname"><span class="pre">getRm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getRm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setRa">
+<span class="sig-name descname"><span class="pre">setRa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setRa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getRa">
+<span class="sig-name descname"><span class="pre">getRa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getRa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setDiameter">
+<span class="sig-name descname"><span class="pre">setDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getDiameter">
+<span class="sig-name descname"><span class="pre">getDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setLength">
+<span class="sig-name descname"><span class="pre">setLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getLength">
+<span class="sig-name descname"><span class="pre">getLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setX0">
+<span class="sig-name descname"><span class="pre">setX0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setX0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getX0">
+<span class="sig-name descname"><span class="pre">getX0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getX0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setY0">
+<span class="sig-name descname"><span class="pre">setY0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setY0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getY0">
+<span class="sig-name descname"><span class="pre">getY0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getY0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setZ0">
+<span class="sig-name descname"><span class="pre">setZ0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setZ0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getZ0">
+<span class="sig-name descname"><span class="pre">getZ0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getZ0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setX">
+<span class="sig-name descname"><span class="pre">setX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setX" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getX">
+<span class="sig-name descname"><span class="pre">getX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getX" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setY">
+<span class="sig-name descname"><span class="pre">setY</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setY" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getY">
+<span class="sig-name descname"><span class="pre">getY</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getY" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setZ">
+<span class="sig-name descname"><span class="pre">setZ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.getZ">
+<span class="sig-name descname"><span class="pre">getZ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.getZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.injectMsg">
+<span class="sig-name descname"><span class="pre">injectMsg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.injectMsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      The injectMsg corresponds to the INJECT message in the GENESIS compartment. Unlike the 'inject' field, any value assigned by handleInject applies only for a single timestep.So it needs to be updated every dt for a steady (or varying)injection current</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.randInject">
+<span class="sig-name descname"><span class="pre">randInject</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.randInject" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Sends a random injection current to the compartment. Must beupdated each timestep.Arguments to randInject are probability and current.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">injectMsg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      The injectMsg corresponds to the INJECT message in the GENESIS compartment. Unlike the 'inject' field, any value assigned by handleInject applies only for a single timestep.So it needs to be updated every dt for a steady (or varying)injection current</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.cable">
+<span class="sig-name descname"><span class="pre">cable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.cable" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Message for organizing compartments into groups, calledcables. Doesn't do anything.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.displace">
+<span class="sig-name descname"><span class="pre">displace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.displace" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Displaces compartment by specified vector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.setGeomAndElec">
+<span class="sig-name descname"><span class="pre">setGeomAndElec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.setGeomAndElec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns length and dia and accounts for any electrical scaling needed as a result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles 'process' call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles 'reinit' call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.initProc">
+<span class="sig-name descname"><span class="pre">initProc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.initProc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles Process call for the 'init' phase of the CompartmentBase calculations. These occur as a separate Tick cycle from the regular proc cycle, and should be called before the proc msg.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.initReinit">
+<span class="sig-name descname"><span class="pre">initReinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.initReinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles Reinit call for the 'init' phase of the CompartmentBase calculations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.handleChannel">
+<span class="sig-name descname"><span class="pre">handleChannel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.handleChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles conductance and Reversal potential arguments from Channel</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.handleRaxial">
+<span class="sig-name descname"><span class="pre">handleRaxial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.handleRaxial" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles Raxial info: arguments are Ra and Vm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CompartmentBase.handleAxial">
+<span class="sig-name descname"><span class="pre">handleAxial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CompartmentBase.handleAxial" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles Axial information. Argument is just Vm.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.VmOut">
+<span class="sig-name descname"><span class="pre">VmOut</span></span><a class="headerlink" href="#CompartmentBase.VmOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out Vm value of compartment on each timestep</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.axialOut">
+<span class="sig-name descname"><span class="pre">axialOut</span></span><a class="headerlink" href="#CompartmentBase.axialOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out Vm value of compartment to adjacent compartments,on each timestep</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.raxialOut">
+<span class="sig-name descname"><span class="pre">raxialOut</span></span><a class="headerlink" href="#CompartmentBase.raxialOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Raxial information on each timestep, fields are Ra and Vm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Vm">
+<span class="sig-name descname"><span class="pre">Vm</span></span><a class="headerlink" href="#CompartmentBase.Vm" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      membrane potential</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Cm">
+<span class="sig-name descname"><span class="pre">Cm</span></span><a class="headerlink" href="#CompartmentBase.Cm" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Membrane capacitance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Em">
+<span class="sig-name descname"><span class="pre">Em</span></span><a class="headerlink" href="#CompartmentBase.Em" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Resting membrane potential</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Im">
+<span class="sig-name descname"><span class="pre">Im</span></span><a class="headerlink" href="#CompartmentBase.Im" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Current going through membrane</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.inject">
+<span class="sig-name descname"><span class="pre">inject</span></span><a class="headerlink" href="#CompartmentBase.inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Current injection to deliver into compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.initVm">
+<span class="sig-name descname"><span class="pre">initVm</span></span><a class="headerlink" href="#CompartmentBase.initVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Initial value for membrane potential</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Rm">
+<span class="sig-name descname"><span class="pre">Rm</span></span><a class="headerlink" href="#CompartmentBase.Rm" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Membrane resistance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.Ra">
+<span class="sig-name descname"><span class="pre">Ra</span></span><a class="headerlink" href="#CompartmentBase.Ra" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Axial resistance of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.diameter">
+<span class="sig-name descname"><span class="pre">diameter</span></span><a class="headerlink" href="#CompartmentBase.diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Diameter of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#CompartmentBase.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Length of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.x0">
+<span class="sig-name descname"><span class="pre">x0</span></span><a class="headerlink" href="#CompartmentBase.x0" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      X coordinate of start of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.y0">
+<span class="sig-name descname"><span class="pre">y0</span></span><a class="headerlink" href="#CompartmentBase.y0" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Y coordinate of start of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.z0">
+<span class="sig-name descname"><span class="pre">z0</span></span><a class="headerlink" href="#CompartmentBase.z0" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Z coordinate of start of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#CompartmentBase.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      x coordinate of end of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#CompartmentBase.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      y coordinate of end of compartment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CompartmentBase.z">
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#CompartmentBase.z" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      z coordinate of end of compartment</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

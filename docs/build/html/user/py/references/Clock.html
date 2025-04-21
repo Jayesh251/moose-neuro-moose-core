@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clock &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Clock</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Clock.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="clock">
+<h1>Clock<a class="headerlink" href="#clock" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Clock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Clock</span></span><a class="headerlink" href="#Clock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Every object scheduled for operations in MOOSE is connected to oneof the 'Tick' entries on the Clock.
+The Clock manages 32 'Ticks', each of which has its own dt,which is an integral multiple of the clock baseDt_. On every clock step the ticks are examined to see which of themis due for updating. When a tick is updated, the 'process' call of all the objects scheduled on that tick is called. Order of execution: If a subset of ticks are scheduled for execution at a given timestep, then they will be executed in numerical order, lowest tick first and highest last. There is no guarantee of execution order for objects within a clock tick.
+The clock provides default scheduling for all objects which can be accessed using Clock::lookupDefaultTick( className ). Specific items of note are that the output/file dump objects are second-last, and the postmaster is last on the order of Ticks. The clock also starts up with some default timesteps for each of these ticks, and this can be overridden using the shell command setClock, or by directly assigning tickStep values on the clock object.
+Which objects use which tick? As a rule of thumb, try this:
+Electrical/compartmental model calculations: Ticks 0-7
+Tables and output objects for electrical output: Tick 8
+Diffusion solver: Tick 10
+Chemical/compartmental model calculations: Ticks 11-17
+Tables and output objects for chemical output: Tick 18
+Unassigned: Ticks 20-29
+Special: 30-31
+Data output is a bit special, since you may want to store data at different rates for electrical and chemical processes in the same model. Here you will have to specifically assign distinct clock ticks for the tables/fileIO objects handling output at different time-resolutions. Typically one uses tick 8 and 18.
+Here are the detailed mappings of class to tick.
+|    Class                                 Tick              dt
+|    DiffAmp                               0         50e-6
+|    Interpol                              0         50e-6
+|    PIDController         0         50e-6
+|    PulseGen                              0         50e-6
+|    StimulusTable         0         50e-6
+|    testSched                             0         50e-6
+|    VClamp                                0         50e-6
+|  SynHandlerBase                    1               50e-6
+|    SimpleSynHandler                1               50e-6
+|  STDPSynHandler              1             50e-6</p>
+<blockquote>
+<div><p>GraupnerBrunel2012CaPlasticitySynHandler    1               50e-6
+SeqSynHandler               1               50e-6</p>
+<blockquote>
+<div><p>CaConc                          1               50e-6
+CaConcBase                      1               50e-6
+DifShell                        1               50e-6
+MgBlock                         1               50e-6
+Nernst                          1               50e-6
+RandSpike                       1               50e-6
+ChanBase                        2               50e-6
+IntFire                         2               50e-6
+IntFireBase                     2               50e-6
+LIF                             2               50e-6
+QIF                             2               50e-6
+ExIF                            2               50e-6
+AdExIF                          2               50e-6
+AdThreshIF                              2               50e-6
+IzhIF                           2               50e-6
+IzhikevichNrn                   2               50e-6
+SynChan                         2               50e-6
+NMDAChan                                2               50e-6
+GapJunction                     2               50e-6
+HHChannel                       2               50e-6
+HHChannel2D                     2               50e-6
+Leakage                         2               50e-6
+MarkovChannel                   2               50e-6
+MarkovGslSolver                 2               50e-6
+MarkovRateTable                 2               50e-6
+MarkovSolver                    2               50e-6
+MarkovSolverBase                2               50e-6
+RC                              2               50e-6
+Compartment (init)              3               50e-6
+CompartmentBase (init )         3               50e-6
+SymCompartment  (init)          3               50e-6
+Compartment                     4               50e-6
+CompartmentBase                 4               50e-6
+SymCompartment                  4               50e-6
+SpikeGen                        5               50e-6
+HSolve                          6               50e-6
+SpikeStats                      7               50e-6
+Table                           8               0.1e-3
+TimeTable                       8               0.1e-3
+Dsolve                          10              0.01
+Adaptor                         11              0.1
+Func                            12              0.1
+Function                        12              0.1
+Arith                           12              0.1
+BufPool                         13              0.1
+Pool                            13              0.1
+PoolBase                        13              0.1
+CplxEnzBase                     14              0.1
+Enz                             14              0.1
+EnzBase                         14              0.1
+MMenz                           14              0.1
+Reac                            14              0.1
+ReacBase                        14              0.1
+Gsolve  (init)                  15              0.1
+Ksolve  (init)                  15              0.1
+Gsolve                          16              0.1
+Ksolve                          16              0.1
+Stats                           17              0.1
+Table2                          18              1
+Streamer                        19              10
+HDF5DataWriter                  30              1
+HDF5WriterBase                  30              1
+NSDFWriter                      30              1</p>
+<blockquote>
+<div><p>PyRun                           30              1</p>
+</div></blockquote>
+<p>PostMaster                      31              0.01</p>
+<p>Note that the other classes are not scheduled at all.</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.clockControl">
+<span class="sig-name descname"><span class="pre">clockControl</span></span><a class="headerlink" href="#Clock.clockControl" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Controls all scheduling aspects of Clock, usually from Shell</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc0">
+<span class="sig-name descname"><span class="pre">proc0</span></span><a class="headerlink" href="#Clock.proc0" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc1">
+<span class="sig-name descname"><span class="pre">proc1</span></span><a class="headerlink" href="#Clock.proc1" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc2">
+<span class="sig-name descname"><span class="pre">proc2</span></span><a class="headerlink" href="#Clock.proc2" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc3">
+<span class="sig-name descname"><span class="pre">proc3</span></span><a class="headerlink" href="#Clock.proc3" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc4">
+<span class="sig-name descname"><span class="pre">proc4</span></span><a class="headerlink" href="#Clock.proc4" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc5">
+<span class="sig-name descname"><span class="pre">proc5</span></span><a class="headerlink" href="#Clock.proc5" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc6">
+<span class="sig-name descname"><span class="pre">proc6</span></span><a class="headerlink" href="#Clock.proc6" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc7">
+<span class="sig-name descname"><span class="pre">proc7</span></span><a class="headerlink" href="#Clock.proc7" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc8">
+<span class="sig-name descname"><span class="pre">proc8</span></span><a class="headerlink" href="#Clock.proc8" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc9">
+<span class="sig-name descname"><span class="pre">proc9</span></span><a class="headerlink" href="#Clock.proc9" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc10">
+<span class="sig-name descname"><span class="pre">proc10</span></span><a class="headerlink" href="#Clock.proc10" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc11">
+<span class="sig-name descname"><span class="pre">proc11</span></span><a class="headerlink" href="#Clock.proc11" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc12">
+<span class="sig-name descname"><span class="pre">proc12</span></span><a class="headerlink" href="#Clock.proc12" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc13">
+<span class="sig-name descname"><span class="pre">proc13</span></span><a class="headerlink" href="#Clock.proc13" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc14">
+<span class="sig-name descname"><span class="pre">proc14</span></span><a class="headerlink" href="#Clock.proc14" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc15">
+<span class="sig-name descname"><span class="pre">proc15</span></span><a class="headerlink" href="#Clock.proc15" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc16">
+<span class="sig-name descname"><span class="pre">proc16</span></span><a class="headerlink" href="#Clock.proc16" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc17">
+<span class="sig-name descname"><span class="pre">proc17</span></span><a class="headerlink" href="#Clock.proc17" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc18">
+<span class="sig-name descname"><span class="pre">proc18</span></span><a class="headerlink" href="#Clock.proc18" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc19">
+<span class="sig-name descname"><span class="pre">proc19</span></span><a class="headerlink" href="#Clock.proc19" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc20">
+<span class="sig-name descname"><span class="pre">proc20</span></span><a class="headerlink" href="#Clock.proc20" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc21">
+<span class="sig-name descname"><span class="pre">proc21</span></span><a class="headerlink" href="#Clock.proc21" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc22">
+<span class="sig-name descname"><span class="pre">proc22</span></span><a class="headerlink" href="#Clock.proc22" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc23">
+<span class="sig-name descname"><span class="pre">proc23</span></span><a class="headerlink" href="#Clock.proc23" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc24">
+<span class="sig-name descname"><span class="pre">proc24</span></span><a class="headerlink" href="#Clock.proc24" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc25">
+<span class="sig-name descname"><span class="pre">proc25</span></span><a class="headerlink" href="#Clock.proc25" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc26">
+<span class="sig-name descname"><span class="pre">proc26</span></span><a class="headerlink" href="#Clock.proc26" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc27">
+<span class="sig-name descname"><span class="pre">proc27</span></span><a class="headerlink" href="#Clock.proc27" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc28">
+<span class="sig-name descname"><span class="pre">proc28</span></span><a class="headerlink" href="#Clock.proc28" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc29">
+<span class="sig-name descname"><span class="pre">proc29</span></span><a class="headerlink" href="#Clock.proc29" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc30">
+<span class="sig-name descname"><span class="pre">proc30</span></span><a class="headerlink" href="#Clock.proc30" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.proc31">
+<span class="sig-name descname"><span class="pre">proc31</span></span><a class="headerlink" href="#Clock.proc31" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared process/reinit message</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.setBaseDt">
+<span class="sig-name descname"><span class="pre">setBaseDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.setBaseDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getBaseDt">
+<span class="sig-name descname"><span class="pre">getBaseDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getBaseDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getRunTime">
+<span class="sig-name descname"><span class="pre">getRunTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getRunTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getCurrentTime">
+<span class="sig-name descname"><span class="pre">getCurrentTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getCurrentTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getNsteps">
+<span class="sig-name descname"><span class="pre">getNsteps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getNsteps" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getNumTicks">
+<span class="sig-name descname"><span class="pre">getNumTicks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getNumTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getStride">
+<span class="sig-name descname"><span class="pre">getStride</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getStride" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getCurrentStep">
+<span class="sig-name descname"><span class="pre">getCurrentStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getCurrentStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getDts">
+<span class="sig-name descname"><span class="pre">getDts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getDts" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getIsRunning">
+<span class="sig-name descname"><span class="pre">getIsRunning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getIsRunning" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.setTickStep">
+<span class="sig-name descname"><span class="pre">setTickStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.setTickStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getTickStep">
+<span class="sig-name descname"><span class="pre">getTickStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getTickStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.setTickDt">
+<span class="sig-name descname"><span class="pre">setTickDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.setTickDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getTickDt">
+<span class="sig-name descname"><span class="pre">getTickDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getTickDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.getDefaultTick">
+<span class="sig-name descname"><span class="pre">getDefaultTick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.getDefaultTick" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Sets off the simulation for the specified duration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Sets off the simulation for the specified # of steps. Here each step advances the simulation by the timestep of the smallest tick that is actually in use.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Halts the simulation, with option to restart seamlessly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Clock.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Clock.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Zeroes out all ticks, starts at t = 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.finished">
+<span class="sig-name descname"><span class="pre">finished</span></span><a class="headerlink" href="#Clock.finished" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>source message field</em>)      Signal for completion of run</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process0">
+<span class="sig-name descname"><span class="pre">process0</span></span><a class="headerlink" href="#Clock.process0" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit0">
+<span class="sig-name descname"><span class="pre">reinit0</span></span><a class="headerlink" href="#Clock.reinit0" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process1">
+<span class="sig-name descname"><span class="pre">process1</span></span><a class="headerlink" href="#Clock.process1" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit1">
+<span class="sig-name descname"><span class="pre">reinit1</span></span><a class="headerlink" href="#Clock.reinit1" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process2">
+<span class="sig-name descname"><span class="pre">process2</span></span><a class="headerlink" href="#Clock.process2" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit2">
+<span class="sig-name descname"><span class="pre">reinit2</span></span><a class="headerlink" href="#Clock.reinit2" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process3">
+<span class="sig-name descname"><span class="pre">process3</span></span><a class="headerlink" href="#Clock.process3" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit3">
+<span class="sig-name descname"><span class="pre">reinit3</span></span><a class="headerlink" href="#Clock.reinit3" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process4">
+<span class="sig-name descname"><span class="pre">process4</span></span><a class="headerlink" href="#Clock.process4" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit4">
+<span class="sig-name descname"><span class="pre">reinit4</span></span><a class="headerlink" href="#Clock.reinit4" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process5">
+<span class="sig-name descname"><span class="pre">process5</span></span><a class="headerlink" href="#Clock.process5" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit5">
+<span class="sig-name descname"><span class="pre">reinit5</span></span><a class="headerlink" href="#Clock.reinit5" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process6">
+<span class="sig-name descname"><span class="pre">process6</span></span><a class="headerlink" href="#Clock.process6" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit6">
+<span class="sig-name descname"><span class="pre">reinit6</span></span><a class="headerlink" href="#Clock.reinit6" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process7">
+<span class="sig-name descname"><span class="pre">process7</span></span><a class="headerlink" href="#Clock.process7" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit7">
+<span class="sig-name descname"><span class="pre">reinit7</span></span><a class="headerlink" href="#Clock.reinit7" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process8">
+<span class="sig-name descname"><span class="pre">process8</span></span><a class="headerlink" href="#Clock.process8" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit8">
+<span class="sig-name descname"><span class="pre">reinit8</span></span><a class="headerlink" href="#Clock.reinit8" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process9">
+<span class="sig-name descname"><span class="pre">process9</span></span><a class="headerlink" href="#Clock.process9" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit9">
+<span class="sig-name descname"><span class="pre">reinit9</span></span><a class="headerlink" href="#Clock.reinit9" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process10">
+<span class="sig-name descname"><span class="pre">process10</span></span><a class="headerlink" href="#Clock.process10" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit10">
+<span class="sig-name descname"><span class="pre">reinit10</span></span><a class="headerlink" href="#Clock.reinit10" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process11">
+<span class="sig-name descname"><span class="pre">process11</span></span><a class="headerlink" href="#Clock.process11" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 11</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit11">
+<span class="sig-name descname"><span class="pre">reinit11</span></span><a class="headerlink" href="#Clock.reinit11" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 11</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process12">
+<span class="sig-name descname"><span class="pre">process12</span></span><a class="headerlink" href="#Clock.process12" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 12</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit12">
+<span class="sig-name descname"><span class="pre">reinit12</span></span><a class="headerlink" href="#Clock.reinit12" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 12</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process13">
+<span class="sig-name descname"><span class="pre">process13</span></span><a class="headerlink" href="#Clock.process13" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 13</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit13">
+<span class="sig-name descname"><span class="pre">reinit13</span></span><a class="headerlink" href="#Clock.reinit13" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 13</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process14">
+<span class="sig-name descname"><span class="pre">process14</span></span><a class="headerlink" href="#Clock.process14" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 14</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit14">
+<span class="sig-name descname"><span class="pre">reinit14</span></span><a class="headerlink" href="#Clock.reinit14" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 14</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process15">
+<span class="sig-name descname"><span class="pre">process15</span></span><a class="headerlink" href="#Clock.process15" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 15</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit15">
+<span class="sig-name descname"><span class="pre">reinit15</span></span><a class="headerlink" href="#Clock.reinit15" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 15</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process16">
+<span class="sig-name descname"><span class="pre">process16</span></span><a class="headerlink" href="#Clock.process16" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 16</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit16">
+<span class="sig-name descname"><span class="pre">reinit16</span></span><a class="headerlink" href="#Clock.reinit16" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 16</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process17">
+<span class="sig-name descname"><span class="pre">process17</span></span><a class="headerlink" href="#Clock.process17" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 17</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit17">
+<span class="sig-name descname"><span class="pre">reinit17</span></span><a class="headerlink" href="#Clock.reinit17" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 17</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process18">
+<span class="sig-name descname"><span class="pre">process18</span></span><a class="headerlink" href="#Clock.process18" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 18</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit18">
+<span class="sig-name descname"><span class="pre">reinit18</span></span><a class="headerlink" href="#Clock.reinit18" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 18</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process19">
+<span class="sig-name descname"><span class="pre">process19</span></span><a class="headerlink" href="#Clock.process19" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 19</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit19">
+<span class="sig-name descname"><span class="pre">reinit19</span></span><a class="headerlink" href="#Clock.reinit19" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 19</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process20">
+<span class="sig-name descname"><span class="pre">process20</span></span><a class="headerlink" href="#Clock.process20" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 20</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit20">
+<span class="sig-name descname"><span class="pre">reinit20</span></span><a class="headerlink" href="#Clock.reinit20" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 20</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process21">
+<span class="sig-name descname"><span class="pre">process21</span></span><a class="headerlink" href="#Clock.process21" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 21</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit21">
+<span class="sig-name descname"><span class="pre">reinit21</span></span><a class="headerlink" href="#Clock.reinit21" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 21</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process22">
+<span class="sig-name descname"><span class="pre">process22</span></span><a class="headerlink" href="#Clock.process22" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 22</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit22">
+<span class="sig-name descname"><span class="pre">reinit22</span></span><a class="headerlink" href="#Clock.reinit22" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 22</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process23">
+<span class="sig-name descname"><span class="pre">process23</span></span><a class="headerlink" href="#Clock.process23" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 23</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit23">
+<span class="sig-name descname"><span class="pre">reinit23</span></span><a class="headerlink" href="#Clock.reinit23" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 23</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process24">
+<span class="sig-name descname"><span class="pre">process24</span></span><a class="headerlink" href="#Clock.process24" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 24</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit24">
+<span class="sig-name descname"><span class="pre">reinit24</span></span><a class="headerlink" href="#Clock.reinit24" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 24</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process25">
+<span class="sig-name descname"><span class="pre">process25</span></span><a class="headerlink" href="#Clock.process25" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 25</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit25">
+<span class="sig-name descname"><span class="pre">reinit25</span></span><a class="headerlink" href="#Clock.reinit25" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 25</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process26">
+<span class="sig-name descname"><span class="pre">process26</span></span><a class="headerlink" href="#Clock.process26" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 26</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit26">
+<span class="sig-name descname"><span class="pre">reinit26</span></span><a class="headerlink" href="#Clock.reinit26" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 26</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process27">
+<span class="sig-name descname"><span class="pre">process27</span></span><a class="headerlink" href="#Clock.process27" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 27</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit27">
+<span class="sig-name descname"><span class="pre">reinit27</span></span><a class="headerlink" href="#Clock.reinit27" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 27</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process28">
+<span class="sig-name descname"><span class="pre">process28</span></span><a class="headerlink" href="#Clock.process28" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 28</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit28">
+<span class="sig-name descname"><span class="pre">reinit28</span></span><a class="headerlink" href="#Clock.reinit28" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 28</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process29">
+<span class="sig-name descname"><span class="pre">process29</span></span><a class="headerlink" href="#Clock.process29" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 29</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit29">
+<span class="sig-name descname"><span class="pre">reinit29</span></span><a class="headerlink" href="#Clock.reinit29" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 29</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process30">
+<span class="sig-name descname"><span class="pre">process30</span></span><a class="headerlink" href="#Clock.process30" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 30</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit30">
+<span class="sig-name descname"><span class="pre">reinit30</span></span><a class="headerlink" href="#Clock.reinit30" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 30</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.process31">
+<span class="sig-name descname"><span class="pre">process31</span></span><a class="headerlink" href="#Clock.process31" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      process for Tick 31</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.reinit31">
+<span class="sig-name descname"><span class="pre">reinit31</span></span><a class="headerlink" href="#Clock.reinit31" title="Permalink to this definition">¶</a></dt>
+<dd><p>PK8ProcInfo (<em>source message field</em>)      reinit for Tick 31</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.baseDt">
+<span class="sig-name descname"><span class="pre">baseDt</span></span><a class="headerlink" href="#Clock.baseDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Base timestep for simulation. This is the smallest dt out of all the clock ticks. By definition all other timesteps are integral multiples of this, and are rounded to ensure that this is the case .</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.runTime">
+<span class="sig-name descname"><span class="pre">runTime</span></span><a class="headerlink" href="#Clock.runTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Duration to run the simulation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.currentTime">
+<span class="sig-name descname"><span class="pre">currentTime</span></span><a class="headerlink" href="#Clock.currentTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Current simulation time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.nsteps">
+<span class="sig-name descname"><span class="pre">nsteps</span></span><a class="headerlink" href="#Clock.nsteps" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned long (<em>value field</em>)      Number of steps to advance the simulation, in units of the smallest timestep on the clock ticks</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.numTicks">
+<span class="sig-name descname"><span class="pre">numTicks</span></span><a class="headerlink" href="#Clock.numTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of clock ticks</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.stride">
+<span class="sig-name descname"><span class="pre">stride</span></span><a class="headerlink" href="#Clock.stride" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number by which the simulation advances the current step on each cycle. stride = smallest active timestep/smallest defined timestep.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.currentStep">
+<span class="sig-name descname"><span class="pre">currentStep</span></span><a class="headerlink" href="#Clock.currentStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned long (<em>value field</em>)      Current simulation step</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.dts">
+<span class="sig-name descname"><span class="pre">dts</span></span><a class="headerlink" href="#Clock.dts" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Utility function returning the dt (timestep) of all ticks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.isRunning">
+<span class="sig-name descname"><span class="pre">isRunning</span></span><a class="headerlink" href="#Clock.isRunning" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      Utility function to report if simulation is in progress.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.tickStep">
+<span class="sig-name descname"><span class="pre">tickStep</span></span><a class="headerlink" href="#Clock.tickStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,unsigned int (<em>lookup field</em>)      Step size of specified Tick, as integral multiple of dt_ A zero step size means that the Tick is inactive</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.tickDt">
+<span class="sig-name descname"><span class="pre">tickDt</span></span><a class="headerlink" href="#Clock.tickDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,double (<em>lookup field</em>)      Timestep dt of specified Tick. Always integral multiple of dt_. If you assign a non-integer multiple it will round off.  A zero timestep means that the Tick is inactive</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Clock.defaultTick">
+<span class="sig-name descname"><span class="pre">defaultTick</span></span><a class="headerlink" href="#Clock.defaultTick" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,unsigned int (<em>lookup field</em>)      Looks up the default Tick to use for the specified class. If no tick is assigned, as for classes without a process operation or zombie classes, the tick is ~0U. If nothing can be found returns 0 and emits a warning.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

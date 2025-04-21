@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaConcBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>CaConcBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/CaConcBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="caconcbase">
+<h1>CaConcBase<a class="headerlink" href="#caconcbase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="CaConcBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CaConcBase</span></span><a class="headerlink" href="#CaConcBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>CaConcBase: Base class for Calcium concentration pool. Takes current from a channel and keeps track of calcium buildup and depletion by a single exponential process.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#CaConcBase.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message to receive Process message from scheduler</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setCa">
+<span class="sig-name descname"><span class="pre">setCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getCa">
+<span class="sig-name descname"><span class="pre">getCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setCaBasal">
+<span class="sig-name descname"><span class="pre">setCaBasal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setCaBasal" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getCaBasal">
+<span class="sig-name descname"><span class="pre">getCaBasal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getCaBasal" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">setCa\_base</span></span></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">getCa\_base</span></span></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setTau">
+<span class="sig-name descname"><span class="pre">setTau</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setTau" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getTau">
+<span class="sig-name descname"><span class="pre">getTau</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getTau" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setB">
+<span class="sig-name descname"><span class="pre">setB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setB" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getB">
+<span class="sig-name descname"><span class="pre">getB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getB" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setThick">
+<span class="sig-name descname"><span class="pre">setThick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setThick" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getThick">
+<span class="sig-name descname"><span class="pre">getThick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getThick" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setDiameter">
+<span class="sig-name descname"><span class="pre">setDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getDiameter">
+<span class="sig-name descname"><span class="pre">getDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setLength">
+<span class="sig-name descname"><span class="pre">setLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getLength">
+<span class="sig-name descname"><span class="pre">getLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setCeiling">
+<span class="sig-name descname"><span class="pre">setCeiling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setCeiling" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getCeiling">
+<span class="sig-name descname"><span class="pre">getCeiling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getCeiling" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.setFloor">
+<span class="sig-name descname"><span class="pre">setFloor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.setFloor" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.getFloor">
+<span class="sig-name descname"><span class="pre">getFloor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.getFloor" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.current">
+<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.current" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Calcium Ion current, due to be converted to conc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.currentFraction">
+<span class="sig-name descname"><span class="pre">currentFraction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.currentFraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Fraction of total Ion current, that is carried by Ca2+.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.increase">
+<span class="sig-name descname"><span class="pre">increase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.increase" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Any input current that increases the concentration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.decrease">
+<span class="sig-name descname"><span class="pre">decrease</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.decrease" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Any input current that decreases the concentration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CaConcBase.basal">
+<span class="sig-name descname"><span class="pre">basal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CaConcBase.basal" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Synonym for assignment of basal conc.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.concOut">
+<span class="sig-name descname"><span class="pre">concOut</span></span><a class="headerlink" href="#CaConcBase.concOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Concentration of Ca in pool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.Ca">
+<span class="sig-name descname"><span class="pre">Ca</span></span><a class="headerlink" href="#CaConcBase.Ca" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Calcium concentration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.CaBasal">
+<span class="sig-name descname"><span class="pre">CaBasal</span></span><a class="headerlink" href="#CaConcBase.CaBasal" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Basal Calcium concentration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Ca\_base</span></span></dt>
+<dd><p>double (<em>value field</em>)      Basal Calcium concentration, synonym for CaBasal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.tau">
+<span class="sig-name descname"><span class="pre">tau</span></span><a class="headerlink" href="#CaConcBase.tau" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Settling time for Ca concentration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.B">
+<span class="sig-name descname"><span class="pre">B</span></span><a class="headerlink" href="#CaConcBase.B" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Volume scaling factor. Deprecated. This is a legacy field from GENESIS and exposes internal calculations. Please do not use.
+B = 1/(vol * F) so that it obeys:
+dC/dt = B*I_Ca - C/tau</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.thick">
+<span class="sig-name descname"><span class="pre">thick</span></span><a class="headerlink" href="#CaConcBase.thick" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Thickness of Ca shell, assumed cylindrical. Legal range is between zero and the radius. If outside this range it is taken as the radius. Default zero, ie, the shell is the entire thickness of the cylinder</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.diameter">
+<span class="sig-name descname"><span class="pre">diameter</span></span><a class="headerlink" href="#CaConcBase.diameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Diameter of Ca shell, assumed cylindrical</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#CaConcBase.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Length of Ca shell, assumed cylindrical</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.ceiling">
+<span class="sig-name descname"><span class="pre">ceiling</span></span><a class="headerlink" href="#CaConcBase.ceiling" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Ceiling value for Ca concentration. If Ca &gt; ceiling, Ca = ceiling. If ceiling &lt;= 0.0, there is no upper limit on Ca concentration value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CaConcBase.floor">
+<span class="sig-name descname"><span class="pre">floor</span></span><a class="headerlink" href="#CaConcBase.floor" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Floor value for Ca concentration. If Ca &lt; floor, Ca = floor</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

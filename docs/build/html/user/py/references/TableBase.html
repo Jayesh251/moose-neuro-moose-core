@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TableBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>TableBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/TableBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tablebase">
+<h1>TableBase<a class="headerlink" href="#tablebase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="TableBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TableBase</span></span><a class="headerlink" href="#TableBase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="TableBase.setVector">
+<span class="sig-name descname"><span class="pre">setVector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.setVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.getVector">
+<span class="sig-name descname"><span class="pre">getVector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.getVector" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.getOutputValue">
+<span class="sig-name descname"><span class="pre">getOutputValue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.getOutputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.getSize">
+<span class="sig-name descname"><span class="pre">getSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.getSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.getY">
+<span class="sig-name descname"><span class="pre">getY</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.getY" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.linearTransform">
+<span class="sig-name descname"><span class="pre">linearTransform</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.linearTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Linearly scales and offsets data. Scale first, then offset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.xplot">
+<span class="sig-name descname"><span class="pre">xplot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.xplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Dumps table contents to xplot-format file. Argument 1 is filename, argument 2 is plotname</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.plainPlot">
+<span class="sig-name descname"><span class="pre">plainPlot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.plainPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Dumps table contents to single-column ascii file. Uses scientific notation. Argument 1 is filename</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.loadCSV">
+<span class="sig-name descname"><span class="pre">loadCSV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.loadCSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Reads a single column from a CSV file. Arguments: filename, column#, starting row#, separator</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.loadXplot">
+<span class="sig-name descname"><span class="pre">loadXplot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.loadXplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Reads a single plot from an xplot file. Arguments: filename, plotnameWhen the file has 2 columns, the 2nd column is loaded.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.loadXplotRange">
+<span class="sig-name descname"><span class="pre">loadXplotRange</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.loadXplotRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Reads a single plot from an xplot file, and selects a subset of points from it. Arguments: filename, plotname, startindex, endindexUses C convention: startindex included, endindex not included.When the file has 2 columns, the 2nd column is loaded.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.compareXplot">
+<span class="sig-name descname"><span class="pre">compareXplot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.compareXplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Reads a plot from an xplot file and compares with contents of TableBase.Result is put in 'output' field of table.If the comparison fails (e.g., due to zero entries), the return value is -1.Arguments: filename, plotname, comparison_operationOperations: rmsd (for RMSDifference), rmsr (RMSratio ), dotp (Dot product, not yet implemented).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.compareVec">
+<span class="sig-name descname"><span class="pre">compareVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.compareVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Compares contents of TableBase with a vector of doubles.Result is put in 'output' field of table.If the comparison fails (e.g., due to zero entries), the return value is -1.Arguments: Other vector, comparison_operationOperations: rmsd (for RMSDifference), rmsr (RMSratio ), dotp (Dot product, not yet implemented).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TableBase.clearVec">
+<span class="sig-name descname"><span class="pre">clearVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TableBase.clearVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles request to clear the data vector</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TableBase.vector">
+<span class="sig-name descname"><span class="pre">vector</span></span><a class="headerlink" href="#TableBase.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      vector with all table entries</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TableBase.outputValue">
+<span class="sig-name descname"><span class="pre">outputValue</span></span><a class="headerlink" href="#TableBase.outputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Output value holding current table entry or output of a calculation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TableBase.size">
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#TableBase.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      size of table. Note that this is the number of x divisions +1since it must represent the largest value as well as thesmallest</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TableBase.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#TableBase.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,double (<em>lookup field</em>)      Value of table at specified index</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

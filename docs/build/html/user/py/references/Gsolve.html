@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gsolve &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Gsolve</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Gsolve.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gsolve">
+<h1>Gsolve<a class="headerlink" href="#gsolve" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Gsolve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Gsolve</span></span><a class="headerlink" href="#Gsolve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#Gsolve.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for process and reinit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.init">
+<span class="sig-name descname"><span class="pre">init</span></span><a class="headerlink" href="#Gsolve.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for initProc and initReinit. This is used when the system has cross-compartment reactions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.xCompt">
+<span class="sig-name descname"><span class="pre">xCompt</span></span><a class="headerlink" href="#Gsolve.xCompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for pool exchange for cross-compartment reactions. Exchanges latest values of all pools that participate in such reactions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setStoich">
+<span class="sig-name descname"><span class="pre">setStoich</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setStoich" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getStoich">
+<span class="sig-name descname"><span class="pre">getStoich</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getStoich" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getNumLocalVoxels">
+<span class="sig-name descname"><span class="pre">getNumLocalVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getNumLocalVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setNVec">
+<span class="sig-name descname"><span class="pre">setNVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setNVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getNVec">
+<span class="sig-name descname"><span class="pre">getNVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getNVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setNumAllVoxels">
+<span class="sig-name descname"><span class="pre">setNumAllVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setNumAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getNumAllVoxels">
+<span class="sig-name descname"><span class="pre">getNumAllVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getNumAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setNumPools">
+<span class="sig-name descname"><span class="pre">setNumPools</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setNumPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getNumPools">
+<span class="sig-name descname"><span class="pre">getNumPools</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getNumPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.voxelVol">
+<span class="sig-name descname"><span class="pre">voxelVol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.voxelVol" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles updates to all voxels. Comes from parent ChemCompt object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.initProc">
+<span class="sig-name descname"><span class="pre">initProc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.initProc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles initProc call from Clock</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.initReinit">
+<span class="sig-name descname"><span class="pre">initReinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.initReinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles initReinit call from Clock</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.xComptIn">
+<span class="sig-name descname"><span class="pre">xComptIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.xComptIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles arriving pool 'n' values used in cross-compartment reactions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setUseRandInit">
+<span class="sig-name descname"><span class="pre">setUseRandInit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setUseRandInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getUseRandInit">
+<span class="sig-name descname"><span class="pre">getUseRandInit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getUseRandInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.setUseClockedUpdate">
+<span class="sig-name descname"><span class="pre">setUseClockedUpdate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.setUseClockedUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getUseClockedUpdate">
+<span class="sig-name descname"><span class="pre">getUseClockedUpdate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getUseClockedUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Gsolve.getNumFire">
+<span class="sig-name descname"><span class="pre">getNumFire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Gsolve.getNumFire" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.xComptOut">
+<span class="sig-name descname"><span class="pre">xComptOut</span></span><a class="headerlink" href="#Gsolve.xComptOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id,vector&lt;double&gt; (<em>source message field</em>)      Sends 'n' of all molecules participating in cross-compartment reactions between any juxtaposed voxels between current compt and another compartment. This includes molecules local to this compartment, as well as proxy molecules belonging elsewhere. A(t+1) = (Alocal(t+1) + AremoteProxy(t+1)) - Alocal(t) A(t+1) = (Aremote(t+1) + Aproxy(t+1)) - Aproxy(t) Then we update A on the respective solvers with: Alocal(t+1) = Aproxy(t+1) = A(t+1) This is equivalent to sending dA over on each timestep.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.stoich">
+<span class="sig-name descname"><span class="pre">stoich</span></span><a class="headerlink" href="#Gsolve.stoich" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id (<em>value field</em>)      Stoichiometry object for handling this reaction system.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.numLocalVoxels">
+<span class="sig-name descname"><span class="pre">numLocalVoxels</span></span><a class="headerlink" href="#Gsolve.numLocalVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of voxels in the core reac-diff system, on the current solver.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.numAllVoxels">
+<span class="sig-name descname"><span class="pre">numAllVoxels</span></span><a class="headerlink" href="#Gsolve.numAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of voxels in the entire reac-diff system, including proxy voxels to represent abutting compartments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.numPools">
+<span class="sig-name descname"><span class="pre">numPools</span></span><a class="headerlink" href="#Gsolve.numPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of molecular pools in the entire reac-diff system, including variable, function and buffered.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.useRandInit">
+<span class="sig-name descname"><span class="pre">useRandInit</span></span><a class="headerlink" href="#Gsolve.useRandInit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>bool (<em>value field</em>)      Flag: True when using probabilistic (random) rounding.</dt><dd><p>Default: True.
+When initializing the mol# from floating-point Sinit values, we have two options. One is to look at each Sinit, and round to the nearest integer. The other is to look at each Sinit, and probabilistically round up or down depending on the  value. For example, if we had a Sinit value of 1.49,  this would always be rounded to 1.0 if the flag is false, and would be rounded to 1.0 and 2.0 in the ratio 51:49 if the flag is true.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.useClockedUpdate">
+<span class="sig-name descname"><span class="pre">useClockedUpdate</span></span><a class="headerlink" href="#Gsolve.useClockedUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      Flag: True to cause all reaction propensities to be updated on every clock tick.
+Default: False.
+This flag should be set when the reaction system includes a function with a dependency on time or on external events. It has a significant speed penalty so the flag should not be set unless there are such functions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.nVec">
+<span class="sig-name descname"><span class="pre">nVec</span></span><a class="headerlink" href="#Gsolve.nVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,vector&lt;double&gt; (<em>lookup field</em>)      vector of pool counts</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Gsolve.numFire">
+<span class="sig-name descname"><span class="pre">numFire</span></span><a class="headerlink" href="#Gsolve.numFire" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,vector&lt;unsigned int&gt; (<em>lookup field</em>)      Vector of the number of times each reaction has fired.Indexed by the voxel number.Zeroed out at reinit.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

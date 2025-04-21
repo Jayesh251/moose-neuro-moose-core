@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CplxEnzBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>CplxEnzBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/CplxEnzBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cplxenzbase">
+<h1>CplxEnzBase<a class="headerlink" href="#cplxenzbase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="CplxEnzBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CplxEnzBase</span></span><a class="headerlink" href="#CplxEnzBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>:            Base class for mass-action enzymes in which there is an  explicit pool for the enzyme-substrate complex. It models the reaction: E + S &lt;===&gt; E.S ----&gt; E + P</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.enz">
+<span class="sig-name descname"><span class="pre">enz</span></span><a class="headerlink" href="#CplxEnzBase.enz" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Connects to enzyme pool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.cplx">
+<span class="sig-name descname"><span class="pre">cplx</span></span><a class="headerlink" href="#CplxEnzBase.cplx" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Connects to enz-sub complex pool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.setK1">
+<span class="sig-name descname"><span class="pre">setK1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.setK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.getK1">
+<span class="sig-name descname"><span class="pre">getK1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.getK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.setK2">
+<span class="sig-name descname"><span class="pre">setK2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.setK2" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.getK2">
+<span class="sig-name descname"><span class="pre">getK2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.getK2" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.setK3">
+<span class="sig-name descname"><span class="pre">setK3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.setK3" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.getK3">
+<span class="sig-name descname"><span class="pre">getK3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.getK3" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.setRatio">
+<span class="sig-name descname"><span class="pre">setRatio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.setRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.getRatio">
+<span class="sig-name descname"><span class="pre">getRatio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.getRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.setConcK1">
+<span class="sig-name descname"><span class="pre">setConcK1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.setConcK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.getConcK1">
+<span class="sig-name descname"><span class="pre">getConcK1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.getConcK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.enzDest">
+<span class="sig-name descname"><span class="pre">enzDest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.enzDest" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles # of molecules of Enzyme</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CplxEnzBase.cplxDest">
+<span class="sig-name descname"><span class="pre">cplxDest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CplxEnzBase.cplxDest" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles # of molecules of enz-sub complex</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.enzOut">
+<span class="sig-name descname"><span class="pre">enzOut</span></span><a class="headerlink" href="#CplxEnzBase.enzOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out increment of molecules on product each timestep</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.cplxOut">
+<span class="sig-name descname"><span class="pre">cplxOut</span></span><a class="headerlink" href="#CplxEnzBase.cplxOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out increment of molecules on product each timestep</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.k1">
+<span class="sig-name descname"><span class="pre">k1</span></span><a class="headerlink" href="#CplxEnzBase.k1" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Forward reaction from enz + sub to complex, in # units.This parameter is subordinate to the Km. This means thatwhen Km is changed, this changes. It also means that whenk2 or k3 (aka kcat) are changed, we assume that Km remainsfixed, and as a result k1 must change. It is only whenk1 is assigned directly that we assume that the user knowswhat they are doing, and we adjust Km accordingly.k1 is also subordinate to the 'ratio' field, since setting the ratio reassigns k2.Should you wish to assign the elementary rates k1, k2, k3,of an enzyme directly, always assign k1 last.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.k2">
+<span class="sig-name descname"><span class="pre">k2</span></span><a class="headerlink" href="#CplxEnzBase.k2" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Reverse reaction from complex to enz + sub</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.k3">
+<span class="sig-name descname"><span class="pre">k3</span></span><a class="headerlink" href="#CplxEnzBase.k3" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Forward rate constant from complex to product + enz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.ratio">
+<span class="sig-name descname"><span class="pre">ratio</span></span><a class="headerlink" href="#CplxEnzBase.ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Ratio of k2/k3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CplxEnzBase.concK1">
+<span class="sig-name descname"><span class="pre">concK1</span></span><a class="headerlink" href="#CplxEnzBase.concK1" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      K1 expressed in concentration (1/millimolar.sec) unitsThis parameter is subordinate to the Km. This means thatwhen Km is changed, this changes. It also means that whenk2 or k3 (aka kcat) are changed, we assume that Km remainsfixed, and as a result concK1 must change. It is only whenconcK1 is assigned directly that we assume that the user knowswhat they are doing, and we adjust Km accordingly.concK1 is also subordinate to the 'ratio' field, sincesetting the ratio reassigns k2.Should you wish to assign the elementary rates concK1, k2, k3,of an enzyme directly, always assign concK1 last.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

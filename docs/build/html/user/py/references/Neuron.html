@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuron &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Neuron</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Neuron.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="neuron">
+<h1>Neuron<a class="headerlink" href="#neuron" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Neuron">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Neuron</span></span><a class="headerlink" href="#Neuron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Neuron - Manager for neurons. Handles high-level specification of distribution of spines, channels and passive properties. Also manages spine resizing through a Spine FieldElement.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setRM">
+<span class="sig-name descname"><span class="pre">setRM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setRM" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getRM">
+<span class="sig-name descname"><span class="pre">getRM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getRM" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setRA">
+<span class="sig-name descname"><span class="pre">setRA</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setRA" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getRA">
+<span class="sig-name descname"><span class="pre">getRA</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getRA" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setCM">
+<span class="sig-name descname"><span class="pre">setCM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setCM" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getCM">
+<span class="sig-name descname"><span class="pre">getCM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getCM" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setEm">
+<span class="sig-name descname"><span class="pre">setEm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setEm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getEm">
+<span class="sig-name descname"><span class="pre">getEm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getEm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setTheta">
+<span class="sig-name descname"><span class="pre">setTheta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setTheta" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getTheta">
+<span class="sig-name descname"><span class="pre">getTheta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getTheta" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setPhi">
+<span class="sig-name descname"><span class="pre">setPhi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setPhi" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getPhi">
+<span class="sig-name descname"><span class="pre">getPhi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getPhi" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setSourceFile">
+<span class="sig-name descname"><span class="pre">setSourceFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setSourceFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getSourceFile">
+<span class="sig-name descname"><span class="pre">getSourceFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getSourceFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setCompartmentLengthInLambdas">
+<span class="sig-name descname"><span class="pre">setCompartmentLengthInLambdas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setCompartmentLengthInLambdas" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getCompartmentLengthInLambdas">
+<span class="sig-name descname"><span class="pre">getCompartmentLengthInLambdas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getCompartmentLengthInLambdas" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getNumCompartments">
+<span class="sig-name descname"><span class="pre">getNumCompartments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getNumCompartments" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getNumSpines">
+<span class="sig-name descname"><span class="pre">getNumSpines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getNumSpines" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getNumBranches">
+<span class="sig-name descname"><span class="pre">getNumBranches</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getNumBranches" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getPathDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">getPathDistanceFromSoma</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getPathDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getGeometricalDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">getGeometricalDistanceFromSoma</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getGeometricalDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getElectrotonicDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">getElectrotonicDistanceFromSoma</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getElectrotonicDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getCompartments">
+<span class="sig-name descname"><span class="pre">getCompartments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getCompartments" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setChannelDistribution">
+<span class="sig-name descname"><span class="pre">setChannelDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setChannelDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getChannelDistribution">
+<span class="sig-name descname"><span class="pre">getChannelDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getChannelDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setPassiveDistribution">
+<span class="sig-name descname"><span class="pre">setPassiveDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setPassiveDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getPassiveDistribution">
+<span class="sig-name descname"><span class="pre">getPassiveDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getPassiveDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setSpineDistribution">
+<span class="sig-name descname"><span class="pre">setSpineDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setSpineDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getSpineDistribution">
+<span class="sig-name descname"><span class="pre">getSpineDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getSpineDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getCompartmentsFromExpression">
+<span class="sig-name descname"><span class="pre">getCompartmentsFromExpression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getCompartmentsFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getValuesFromExpression">
+<span class="sig-name descname"><span class="pre">getValuesFromExpression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getValuesFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getSpinesFromExpression">
+<span class="sig-name descname"><span class="pre">getSpinesFromExpression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getSpinesFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getSpinesOnCompartment">
+<span class="sig-name descname"><span class="pre">getSpinesOnCompartment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getSpinesOnCompartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getParentCompartmentOfSpine">
+<span class="sig-name descname"><span class="pre">getParentCompartmentOfSpine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getParentCompartmentOfSpine" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.buildSegmentTree">
+<span class="sig-name descname"><span class="pre">buildSegmentTree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.buildSegmentTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Build the reference segment tree structure using the child compartments of the current Neuron. Fills in all the coords and length constant information into the segments, for later use when we build reduced compartment trees and channel distributions. Should only be called once, since subsequent use on a reduced model will lose the original full cell geometry.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setSpineAndPsdMesh">
+<span class="sig-name descname"><span class="pre">setSpineAndPsdMesh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setSpineAndPsdMesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns the spine and psd mesh to the Neuron. This is used to build up a mapping from Spine entries on the Neuron to chem spines and PSDs, so that volume change operations from the Spine can propagate to the chem systems.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setSpineAndPsdDsolve">
+<span class="sig-name descname"><span class="pre">setSpineAndPsdDsolve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setSpineAndPsdDsolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns the Dsolves used by spine and PSD to the Neuron. This is used to handle the rescaling of diffusion rates when spines are resized.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.setNumSpine">
+<span class="sig-name descname"><span class="pre">setNumSpine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.setNumSpine" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns number of field entries in field array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Neuron.getNumSpine">
+<span class="sig-name descname"><span class="pre">getNumSpine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Neuron.getNumSpine" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests number of field entries in field array.The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.RM">
+<span class="sig-name descname"><span class="pre">RM</span></span><a class="headerlink" href="#Neuron.RM" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Membrane resistivity, in ohm.m^2. Default value is 1.0.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.RA">
+<span class="sig-name descname"><span class="pre">RA</span></span><a class="headerlink" href="#Neuron.RA" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Axial resistivity of cytoplasm, in ohm.m. Default value is 1.0.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.CM">
+<span class="sig-name descname"><span class="pre">CM</span></span><a class="headerlink" href="#Neuron.CM" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Membrane Capacitance, in F/m^2. Default value is 0.01</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.Em">
+<span class="sig-name descname"><span class="pre">Em</span></span><a class="headerlink" href="#Neuron.Em" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Resting membrane potential of compartments, in Volts. Default value is -0.065.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#Neuron.theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Angle to rotate cell geometry, around long axis of neuron. Think Longitude. Units are radians. Default value is zero, which means no rotation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.phi">
+<span class="sig-name descname"><span class="pre">phi</span></span><a class="headerlink" href="#Neuron.phi" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Angle to rotate cell geometry, around elevation of neuron. Think Latitude. Units are radians. Default value is zero, which means no rotation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.sourceFile">
+<span class="sig-name descname"><span class="pre">sourceFile</span></span><a class="headerlink" href="#Neuron.sourceFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Name of source file from which to load a model. Accepts swc and dotp formats at present. Both these formats require that the appropriate channel definitions should have been loaded into /library.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.compartmentLengthInLambdas">
+<span class="sig-name descname"><span class="pre">compartmentLengthInLambdas</span></span><a class="headerlink" href="#Neuron.compartmentLengthInLambdas" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Units: meters (SI).
+Electrotonic length to use for the largest compartment in the model. Used to define subdivision of branches into compartments. For example, if we set <em>compartmentLengthInLambdas</em>  to 0.1, and <em>lambda</em> (electrotonic length) is 250 microns, then it sets the compartment length to 25 microns. Thus a dendritic branch of 500 microns is subdivided into 20 commpartments. If the branch is shorter than <em>compartmentLengthInLambdas</em>, then it is not subdivided. If <em>compartmentLengthInLambdas</em> is set to 0 then the original compartmental structure of the model is preserved.  Note that this routine does NOT merge branches, even if <em>compartmentLengthInLambdas</em> is bigger than the branch. While all this subdivision is being done, the Neuron class preserves as detailed a geometry as it can, so it can rebuild the more detailed version if needed. Default value of <em>compartmentLengthInLambdas</em> is 0.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.numCompartments">
+<span class="sig-name descname"><span class="pre">numCompartments</span></span><a class="headerlink" href="#Neuron.numCompartments" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of electrical compartments in model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.numSpines">
+<span class="sig-name descname"><span class="pre">numSpines</span></span><a class="headerlink" href="#Neuron.numSpines" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of dendritic spines in model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.numBranches">
+<span class="sig-name descname"><span class="pre">numBranches</span></span><a class="headerlink" href="#Neuron.numBranches" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of branches in dendrites.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.pathDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">pathDistanceFromSoma</span></span><a class="headerlink" href="#Neuron.pathDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      geometrical path distance of each segment from soma, measured by threading along the dendrite.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.geometricalDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">geometricalDistanceFromSoma</span></span><a class="headerlink" href="#Neuron.geometricalDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      geometrical distance of each segment from soma.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.electrotonicDistanceFromSoma">
+<span class="sig-name descname"><span class="pre">electrotonicDistanceFromSoma</span></span><a class="headerlink" href="#Neuron.electrotonicDistanceFromSoma" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      geometrical distance of each segment from soma, as measured along the dendrite.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.compartments">
+<span class="sig-name descname"><span class="pre">compartments</span></span><a class="headerlink" href="#Neuron.compartments" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;ObjId&gt; (<em>value field</em>)      Vector of ObjIds of electrical compartments. Order matches order of segments, and also matches the order of the electrotonic and geometricalDistanceFromSoma vectors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.channelDistribution">
+<span class="sig-name descname"><span class="pre">channelDistribution</span></span><a class="headerlink" href="#Neuron.channelDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;string&gt; (<em>value field</em>)      Specification for distribution of channels, CaConcens and any other model components that are defined as prototypes and have to be placed on the electrical compartments.
+Arguments: proto path field expr [field expr]...</p>
+<blockquote>
+<div><p>Each entry is terminated with an empty string. The prototype is any object created in <em>/library</em>, If a channel matching the prototype name already exists, then all subsequent operations are applied to the extant channel and a new one is not created. The paired arguments are as follows:</p>
+</div></blockquote>
+<p>The <em>field</em> argument specifies the name of the parameter that is to be assigned by the expression.
+The <em>expression</em> argument is a mathematical expression in the muparser framework, which permits most operations including trig and transcendental ones. Of course it also handles simple numerical values like 1.0, 1e-10 and so on. Available arguments for muParser are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>p, g, L, len, dia, maxP, maxG, maxL</dt><dd><p>p: path distance from soma, measured along dendrite, in metres.
+g: geometrical distance from soma, in metres.
+L: electrotonic distance (# of lambdas) from soma, along dend. No units.
+len: length of compartment, in metres.
+dia: for diameter of compartment, in metres.
+maxP: Maximum value of <em>p</em> for this neuron.
+maxG: Maximum value of <em>g</em> for this neuron.
+maxL: Maximum value of <em>L</em> for this neuron.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>The expression for the first field must evaluate to &gt; 0 for the channel to be installed. For example, for channels, if Field == Gbar, and func( r, L, len, dia) &lt; 0,
+then the channel is not installed. This feature is typically used with the sign() or Heaviside H() function to limit range: for example: H(1 - L) will only put channels closer than one length constant from the soma, and zero elsewhere.
+Available fields are:
+Channels: Gbar (install), Ek
+CaConcen: shellDia (install), shellFrac (install), tau, min
+Unless otherwise noted, all fields are scaled appropriately by the dimensions of their compartment. Thus the channel maximal conductance Gbar is automatically scaled by the area of the compartment, and the user does not need to insert this scaling into the calculations.
+All parameters are expressed in SI units. Conductance, for example, is Siemens/sq metre.</p>
+<dl>
+<dt>Some example function forms might be for a channel Gbar:</dt><dd><dl class="simple">
+<dt>p &lt; 10e-6 ? 400<span class="classifier">0.0</span></dt><dd><p>equivalently,</p>
+</dd>
+<dt>H(10e-6 - p) * 400</dt><dd><p>equivalently,</p>
+</dd>
+</dl>
+<p>( sign(10e-6 - p) + 1) * 200</p>
+</dd>
+</dl>
+<p>Each of these forms instruct the function to set channel Gbar to 400 S/m^2 only within 10 microns path distance of soma</p>
+<blockquote>
+<div><p>L &lt; 1.0 ? 100 * exp( -L ) : 0.0
+-&gt;Set channel Gbar to an exponentially falling function of electrotonic distance from soma, provided L is under 1.0 lambdas.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.passiveDistribution">
+<span class="sig-name descname"><span class="pre">passiveDistribution</span></span><a class="headerlink" href="#Neuron.passiveDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;string&gt; (<em>value field</em>)      Specification for distribution of passive properties of cell.
+Arguments: . path field expr [field expr]...
+Note that the arguments list starts with a period.  Each entry is terminated with an empty string. The paired arguments are as follows:
+The <em>field</em> argument specifies the name of the parameter that is to be assigned by the expression.
+The <em>expression</em> argument is a mathematical expression in the muparser framework, which permits most operations including trig and transcendental ones. Of course it also handles simple numerical values like 1.0, 1e-10 and so on. Available arguments for muParser are:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>p, g, L, len, dia, maxP, maxG, maxL</dt><dd><p>p: path distance from soma, measured along dendrite, in metres.
+g: geometrical distance from soma, in metres.
+L: electrotonic distance (# of lambdas) from soma, along dend. No units.
+len: length of compartment, in metres.
+dia: for diameter of compartment, in metres.
+maxP: Maximum value of <em>p</em> for this neuron.
+maxG: Maximum value of <em>g</em> for this neuron.
+maxL: Maximum value of <em>L</em> for this neuron.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Available fields are:
+RM, RA, CM, Rm, Ra, Cm, Em, initVm
+The first three fields are scaled appropriately by the dimensions of their compartment. Thus the membrane resistivity RM (ohms.m^2) is automatically scaled by the area of the compartment, and the user does not need to insert this scaling into the calculations to compute Rm.Using the Rm field lets the user directly assign the membrane resistance (in ohms), presumably using len and dia.
+Similarly, RA (ohms.m) and CM (Farads/m^2) are specific units and the actual values for each compartment are assigned by scaling by length and diameter. Ra (ohms) and Cm (Farads) require explicit evaluation of the expression. All parameters are expressed in SI units. Conductance, for example, is Siemens/sq metre.
+Note that time these calculations do NOT currently include spines</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.spineDistribution">
+<span class="sig-name descname"><span class="pre">spineDistribution</span></span><a class="headerlink" href="#Neuron.spineDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;string&gt; (<em>value field</em>)      Specification for distribution of spines on dendrite.
+Arguments: proto path spacing expr [field expr]...</p>
+<blockquote>
+<div><p>Each entry is terminated with an empty string. The <em>prototype</em> is any spine object created in <em>/library</em>,</p>
+</div></blockquote>
+<p>The <em>path</em> is the wildcard path of compartments on which to place the spine.
+The <em>spacing</em> is the spacing of spines, in metres.
+The <em>expression</em> argument is a mathematical expression in the muparser framework, which permits most operations including trig and transcendental ones. Of course it also handles simple numerical values like 1.0, 1e-10 and so on. The paired arguments are as follows:
+The <em>field</em> argument specifies the name of the parameter that is to be assigned by the expression.
+The <em>expression</em> argument is a mathematical expression as above. Available arguments for muParser are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="n">dia</span><span class="p">,</span> <span class="n">maxP</span><span class="p">,</span> <span class="n">maxG</span><span class="p">,</span> <span class="n">maxL</span>
+
+<span class="n">p</span><span class="p">:</span> <span class="n">path</span> <span class="n">distance</span> <span class="kn">from</span><span class="w"> </span><span class="nn">soma</span><span class="p">,</span> <span class="n">measured</span> <span class="n">along</span> <span class="n">dendrite</span><span class="p">,</span> <span class="ow">in</span> <span class="n">metres</span><span class="o">.</span>
+<span class="n">g</span><span class="p">:</span> <span class="n">geometrical</span> <span class="n">distance</span> <span class="kn">from</span><span class="w"> </span><span class="nn">soma</span><span class="p">,</span> <span class="ow">in</span> <span class="n">metres</span><span class="o">.</span>
+<span class="n">L</span><span class="p">:</span> <span class="n">electrotonic</span> <span class="n">distance</span> <span class="p">(</span><span class="c1"># of lambdas) from soma, along dend. No units.</span>
+<span class="nb">len</span><span class="p">:</span> <span class="n">length</span> <span class="n">of</span> <span class="n">compartment</span><span class="p">,</span> <span class="ow">in</span> <span class="n">metres</span><span class="o">.</span>
+<span class="n">dia</span><span class="p">:</span> <span class="k">for</span> <span class="n">diameter</span> <span class="n">of</span> <span class="n">compartment</span><span class="p">,</span> <span class="ow">in</span> <span class="n">metres</span><span class="o">.</span>
+<span class="n">maxP</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">of</span> <span class="o">*</span><span class="n">p</span><span class="o">*</span> <span class="k">for</span> <span class="n">this</span> <span class="n">neuron</span><span class="o">.</span>
+<span class="n">maxG</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">of</span> <span class="o">*</span><span class="n">g</span><span class="o">*</span> <span class="k">for</span> <span class="n">this</span> <span class="n">neuron</span><span class="o">.</span>
+<span class="n">maxL</span><span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="n">of</span> <span class="o">*</span><span class="n">L</span><span class="o">*</span> <span class="k">for</span> <span class="n">this</span> <span class="n">neuron</span><span class="o">.</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>The expression for the <em>spacing</em> field must evaluate to &gt; 0 for the spine to be installed. For example, if the expresssion is</dt><dd><p>H(1 - L)</p>
+</dd>
+</dl>
+<p>then the systemwill only put spines closer than one length constant from the soma, and zero elsewhere.
+Available spine parameters are:
+spacing, minSpacing, size, sizeDistrib angle, angleDistrib</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.compartmentsFromExpression">
+<span class="sig-name descname"><span class="pre">compartmentsFromExpression</span></span><a class="headerlink" href="#Neuron.compartmentsFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;ObjId&gt; (<em>lookup field</em>)      Vector of ObjIds of electrical compartments that match the 'path expression' pair in the argument string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.valuesFromExpression">
+<span class="sig-name descname"><span class="pre">valuesFromExpression</span></span><a class="headerlink" href="#Neuron.valuesFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;double&gt; (<em>lookup field</em>)      Vector of values computed for each electrical compartment that matches the 'path expression' pair in the argument string.This has 13 times the number of entries as # of compartments.For each compartment the entries are:
+val, p, g, L, len, dia, maxP, maxG, maxL, x, y, z, 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.spinesFromExpression">
+<span class="sig-name descname"><span class="pre">spinesFromExpression</span></span><a class="headerlink" href="#Neuron.spinesFromExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,vector&lt;ObjId&gt; (<em>lookup field</em>)      Vector of ObjIds of compartments comprising spines/heads that match the 'path expression' pair in the argument string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.spinesOnCompartment">
+<span class="sig-name descname"><span class="pre">spinesOnCompartment</span></span><a class="headerlink" href="#Neuron.spinesOnCompartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>ObjId,vector&lt;ObjId&gt; (<em>lookup field</em>)      Vector of ObjIds of spines shafts/heads sitting on the specified electrical compartment. If each spine has a shaft and a head,and there are 10 spines on the compartment, there will be 20 entries in the returned vector, ordered shaft0, head0, shaft1, head1, ...</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Neuron.parentCompartmentOfSpine">
+<span class="sig-name descname"><span class="pre">parentCompartmentOfSpine</span></span><a class="headerlink" href="#Neuron.parentCompartmentOfSpine" title="Permalink to this definition">¶</a></dt>
+<dd><p>ObjId,ObjId (<em>lookup field</em>)      Returns parent compartment of specified spine compartment.Both the spine head or its shaft will return the same parent.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyRun &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PyRun</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/PyRun.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyrun">
+<h1>PyRun<a class="headerlink" href="#pyrun" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="PyRun">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PyRun</span></span><a class="headerlink" href="#PyRun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs Python statements from inside MOOSE.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#PyRun.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process messages from the scheduler objects.The first entry in the shared msg is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt and so on. The second entry is a MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.setRunString">
+<span class="sig-name descname"><span class="pre">setRunString</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.setRunString" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.getRunString">
+<span class="sig-name descname"><span class="pre">getRunString</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.getRunString" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.setInitString">
+<span class="sig-name descname"><span class="pre">setInitString</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.setInitString" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.getInitString">
+<span class="sig-name descname"><span class="pre">getInitString</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.getInitString" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.setMode">
+<span class="sig-name descname"><span class="pre">setMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.setMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.getMode">
+<span class="sig-name descname"><span class="pre">getMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.getMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.setInputVar">
+<span class="sig-name descname"><span class="pre">setInputVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.setInputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.getInputVar">
+<span class="sig-name descname"><span class="pre">getInputVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.getInputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.setOutputVar">
+<span class="sig-name descname"><span class="pre">setOutputVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.setOutputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.getOutputVar">
+<span class="sig-name descname"><span class="pre">getOutputVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.getOutputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.trigger">
+<span class="sig-name descname"><span class="pre">trigger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Executes the current runString whenever a message arrives. It stores the incoming value in local variable named <cite>input_</cite>, which can be used in the <cite>runString</cite> (the underscore is added to avoid conflict with Python's builtin function <cite>input</cite>). If debug is True, it prints the input value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Runs a specified string. Does not modify existing run or init strings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call. Runs the current runString.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PyRun.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PyRun.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call. Runs the current initString.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#PyRun.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out the value of local variable called <cite>output</cite>. Thus, you can have Python statements which compute some value and assign it to the variable called <cite>output</cite> (which is defined at <cite>reinit</cite> call). This will be sent out to any target connected to the <cite>output</cite> field.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.runString">
+<span class="sig-name descname"><span class="pre">runString</span></span><a class="headerlink" href="#PyRun.runString" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      String to be executed at each time step.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.initString">
+<span class="sig-name descname"><span class="pre">initString</span></span><a class="headerlink" href="#PyRun.initString" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      String to be executed at initialization (reinit).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#PyRun.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>int (<em>value field</em>)      Flag to indicate whether runString should be executed for both trigger and process, or one of them</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.inputVar">
+<span class="sig-name descname"><span class="pre">inputVar</span></span><a class="headerlink" href="#PyRun.inputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Name of local variable in which input balue is to be stored. Default is <cite>input_</cite> (to avoid conflict with Python's builtin function <cite>input</cite>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PyRun.outputVar">
+<span class="sig-name descname"><span class="pre">outputVar</span></span><a class="headerlink" href="#PyRun.outputVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Name of local variable for storing output. Default is <cite>output</cite></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

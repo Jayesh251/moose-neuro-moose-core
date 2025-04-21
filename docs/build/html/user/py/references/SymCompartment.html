@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SymCompartment &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SymCompartment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/SymCompartment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="symcompartment">
+<h1>SymCompartment<a class="headerlink" href="#symcompartment" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SymCompartment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SymCompartment</span></span><a class="headerlink" href="#SymCompartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>SymCompartment object, for branching neuron models. In symmetric
+compartments the axial resistance is equally divided on two sides of
+the node. The equivalent circuit of the passive compartment becomes:
+(NOTE: you must use a fixed-width font like Courier for correct rendition of the diagrams below):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">Ra</span><span class="o">/</span><span class="mi">2</span>    <span class="n">B</span>    <span class="n">Ra</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">A</span><span class="o">-/</span>\<span class="o">/</span>\<span class="o">/</span>\\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span><span class="o">/</span>\<span class="o">/</span>\<span class="o">/</span>\<span class="o">--</span> <span class="n">C</span>
+          <span class="o">|</span>
+      \<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span><span class="o">|</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>
+     <span class="o">|</span>         <span class="o">|</span>
+     <span class="o">|</span>         \
+     <span class="o">|</span>         <span class="o">/</span> <span class="n">Rm</span>
+    <span class="o">----</span> <span class="n">Cm</span>    \
+    <span class="o">----</span>       <span class="o">/</span>
+     <span class="o">|</span>         <span class="o">|</span>
+     <span class="o">|</span>       \<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>
+     <span class="o">|</span>        <span class="o">---</span>  <span class="n">Em</span>
+     <span class="o">|</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span>\<span class="n">_</span><span class="o">|</span>
+         <span class="o">|</span>
+       \<span class="n">_</span>\<span class="n">_</span><span class="o">|</span>\<span class="n">_</span>\<span class="n">_</span>
+       <span class="o">/////</span>
+</pre></div>
+</div>
+<p>In case of branching, the B-C part of the parent's axial resistance
+forms a Y with the A-B part of the children:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                             <span class="sa">B</span><span class="s1">&#39;</span>
+                             <span class="o">|</span>
+                             <span class="o">/</span>
+                             \
+                             <span class="o">/</span>
+                             \
+                             <span class="o">/</span>
+                             <span class="o">|</span><span class="n">A</span><span class="s1">&#39;</span>
+              <span class="n">B</span>              <span class="o">|</span>
+<span class="n">A</span><span class="o">-----/</span>\<span class="o">/</span>\<span class="o">/</span>\<span class="o">-----/</span>\<span class="o">/</span>\<span class="o">/</span>\<span class="o">------|</span><span class="n">C</span>
+                             <span class="o">|</span>
+                             <span class="o">|</span><span class="n">A</span><span class="s2">&quot;</span>
+                             <span class="o">/</span>
+                             \
+                             <span class="o">/</span>
+                             \
+                             <span class="o">/</span>
+                             <span class="o">|</span>
+                             <span class="sa">B</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>As per basic circuit analysis techniques, the C node is replaced using
+star-mesh transform. This requires all sibling compartments at a
+branch point to be connected via 'sibling' messages by the user (or
+by the cell reader in case of prototypes). For the same reason, the
+child compartment must be connected to the parent by
+distal-proximal message pair. The calculation of the
+coefficient for computing equivalent resistances in the mesh is done
+at reinit.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.proximal">
+<span class="sig-name descname"><span class="pre">proximal</span></span><a class="headerlink" href="#SymCompartment.proximal" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between symmetric compartments.
+It goes from the proximal end of the current compartment to
+distal end of the compartment closer to the soma.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.distal">
+<span class="sig-name descname"><span class="pre">distal</span></span><a class="headerlink" href="#SymCompartment.distal" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between symmetric compartments.
+It goes from the distal end of the current compartment to the
+proximal end of one further from the soma.
+The Ra values collected from children and
+sibling nodes are used for computing the equivalent resistance
+between each pair of nodes using star-mesh transformation.
+Mathematically this is the same as the proximal message, but
+the distinction is important for traversal and clarity.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.sibling">
+<span class="sig-name descname"><span class="pre">sibling</span></span><a class="headerlink" href="#SymCompartment.sibling" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between symmetric compartments.
+Conceptually, this goes from the proximal end of the current
+compartment to the proximal end of a sibling compartment
+on a branch in a dendrite. However,
+this works out to the same as a 'distal' message in terms of
+equivalent circuit.  The Ra values collected from siblings
+and parent node are used for
+computing the equivalent resistance between each pair of
+nodes using star-mesh transformation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.sphere">
+<span class="sig-name descname"><span class="pre">sphere</span></span><a class="headerlink" href="#SymCompartment.sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between a spherical compartment
+(typically soma) and a number of evenly spaced cylindrical
+compartments, typically primary dendrites.
+The sphere contributes the usual Ra/2 to the resistance
+between itself and children. The child compartments
+do not connect across to each other
+through sibling messages. Instead they just connect to the soma
+through the 'proximalOnly' message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.cylinder">
+<span class="sig-name descname"><span class="pre">cylinder</span></span><a class="headerlink" href="#SymCompartment.cylinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between a cylindrical compartment
+(typically a dendrite) and a number of evenly spaced child
+compartments, typically dendritic spines, protruding from the
+curved surface of the cylinder. We assume that the resistance
+from the cylinder curved surface to its axis is negligible.
+The child compartments do not need to connect across to each
+other through sibling messages. Instead they just connect to the
+parent dendrite through the 'proximalOnly' message</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.proximalOnly">
+<span class="sig-name descname"><span class="pre">proximalOnly</span></span><a class="headerlink" href="#SymCompartment.proximalOnly" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message between a dendrite and a parent
+compartment whose offspring are spatially separated from each
+other. For example, evenly spaced dendrites emerging from a soma
+or spines emerging from a common parent dendrite. In these cases
+the sibling dendrites do not need to connect to each other
+through 'sibling' messages. Instead they just connect to the
+parent compartment (soma or dendrite) through this message</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SymCompartment.raxialSym">
+<span class="sig-name descname"><span class="pre">raxialSym</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SymCompartment.raxialSym" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SymCompartment.sumRaxial">
+<span class="sig-name descname"><span class="pre">sumRaxial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SymCompartment.sumRaxial" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">raxialSym</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">sumRaxial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">raxialSym</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">sumRaxial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra from other compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SymCompartment.raxialSphere">
+<span class="sig-name descname"><span class="pre">raxialSphere</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SymCompartment.raxialSphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment. This is a special case when other compartments are evenly distributed on a spherical compartment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SymCompartment.raxialCylinder">
+<span class="sig-name descname"><span class="pre">raxialCylinder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SymCompartment.raxialCylinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment. This is a special case when other compartments are evenly distributed on the curved surface of the cylindrical compartment, so we assume that the cylinder does not add any further resistance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">raxialSphere</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Expects Ra and Vm from other compartment. This is a special case when other compartments are evenly distributed on a spherical compartment.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.proximalOut">
+<span class="sig-name descname"><span class="pre">proximalOut</span></span><a class="headerlink" href="#SymCompartment.proximalOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Ra and Vm on each timestep, on the proximal end of a compartment. That is, this end should be  pointed toward the soma. Mathematically the same as raxialOut but provides a logical orientation of the dendrite. One can traverse proximalOut messages to get to the soma.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.sumRaxialOut">
+<span class="sig-name descname"><span class="pre">sumRaxialOut</span></span><a class="headerlink" href="#SymCompartment.sumRaxialOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out Ra</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.distalOut">
+<span class="sig-name descname"><span class="pre">distalOut</span></span><a class="headerlink" href="#SymCompartment.distalOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Ra and Vm on each timestep, on the distal end of a compartment. This end should be pointed away from the soma. Mathematically the same as proximalOut, but gives an orientation to the dendrite and helps traversal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">sumRaxialOut</span></span><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out Ra</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">distalOut</span></span><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Ra and Vm on each timestep, on the distal end of a compartment. This end should be pointed away from the soma. Mathematically the same as proximalOut, but gives an orientation to the dendrite and helps traversal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">sumRaxialOut</span></span><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out Ra</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">distalOut</span></span><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Ra and Vm on each timestep, on the distal end of a compartment. This end should be pointed away from the soma. Mathematically the same as proximalOut, but gives an orientation to the dendrite and helps traversal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SymCompartment.cylinderOut">
+<span class="sig-name descname"><span class="pre">cylinderOut</span></span><a class="headerlink" href="#SymCompartment.cylinderOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)       Sends out Ra and Vm to compartments (typically spines) on the curved surface of a cylinder. Ra is set to nearly zero, since we assume that the resistance from axis to surface is negligible.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">proximalOut</span></span><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,double (<em>source message field</em>)      Sends out Ra and Vm on each timestep, on the proximal end of a compartment. That is, this end should be  pointed toward the soma. Mathematically the same as raxialOut but provides a logical orientation of the dendrite. One can traverse proximalOut messages to get to the soma.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

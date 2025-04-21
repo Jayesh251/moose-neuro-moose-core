@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpikeGen &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SpikeGen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/SpikeGen.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spikegen">
+<h1>SpikeGen<a class="headerlink" href="#spikegen" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SpikeGen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpikeGen</span></span><a class="headerlink" href="#SpikeGen" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>SpikeGen object, for detecting threshold crossings.The threshold detection can work in multiple modes.</dt><dd><p>If the refractT &lt; 0.0, then it fires an event only at the rising edge of the input voltage waveform</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#SpikeGen.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message to receive Process message from scheduler</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.Vm">
+<span class="sig-name descname"><span class="pre">Vm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.Vm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles Vm message coming in from compartment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.setThreshold">
+<span class="sig-name descname"><span class="pre">setThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.setThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.getThreshold">
+<span class="sig-name descname"><span class="pre">getThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.getThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.setRefractT">
+<span class="sig-name descname"><span class="pre">setRefractT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.setRefractT" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.getRefractT">
+<span class="sig-name descname"><span class="pre">getRefractT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.getRefractT" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">setAbs\_refract</span></span></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">getAbs\_refract</span></span></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.getHasFired">
+<span class="sig-name descname"><span class="pre">getHasFired</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.getHasFired" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.setEdgeTriggered">
+<span class="sig-name descname"><span class="pre">setEdgeTriggered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.setEdgeTriggered" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeGen.getEdgeTriggered">
+<span class="sig-name descname"><span class="pre">getEdgeTriggered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeGen.getEdgeTriggered" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.spikeOut">
+<span class="sig-name descname"><span class="pre">spikeOut</span></span><a class="headerlink" href="#SpikeGen.spikeOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out a trigger for an event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><a class="headerlink" href="#SpikeGen.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Spiking threshold, must cross it going up</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.refractT">
+<span class="sig-name descname"><span class="pre">refractT</span></span><a class="headerlink" href="#SpikeGen.refractT" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Refractory Time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">abs\_refract</span></span></dt>
+<dd><p>double (<em>value field</em>)      Absolute refractory time. Synonym for refractT.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.hasFired">
+<span class="sig-name descname"><span class="pre">hasFired</span></span><a class="headerlink" href="#SpikeGen.hasFired" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      True if SpikeGen has just fired</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeGen.edgeTriggered">
+<span class="sig-name descname"><span class="pre">edgeTriggered</span></span><a class="headerlink" href="#SpikeGen.edgeTriggered" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      When edgeTriggered = 0, the SpikeGen will fire an event in each timestep while incoming Vm is &gt; threshold and at least abs_refracttime has passed since last event. This may be problematic if the incoming Vm remains above threshold for longer than abs_refract. Setting edgeTriggered to 1 resolves this as the SpikeGen generatesan event only on the rising edge of the incoming Vm and will remain idle unless the incoming Vm goes below threshold.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpikeStats">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpikeStats</span></span><a class="headerlink" href="#SpikeStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object to do some minimal stats on rate of a spike train. Derived from the Stats object and returns the same set of stats.Can take either predigested spike event input, or can handle a continuous sampling of membrane potential Vm and decide if a spike has occured based on a threshold.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeStats.setThreshold">
+<span class="sig-name descname"><span class="pre">setThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeStats.setThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeStats.getThreshold">
+<span class="sig-name descname"><span class="pre">getThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeStats.getThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeStats.addSpike">
+<span class="sig-name descname"><span class="pre">addSpike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeStats.addSpike" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles spike event time input, converts into a rate to do stats upon.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpikeStats.Vm">
+<span class="sig-name descname"><span class="pre">Vm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpikeStats.Vm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles continuous voltage input, can be coming in much than update rate of the SpikeStats. Looks for transitions above threshold to register the arrival of a spike. Doesn't do another spike till Vm falls below threshold.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SpikeStats.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><a class="headerlink" href="#SpikeStats.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Spiking threshold. If Vm crosses this going up then the SpikeStats object considers that a spike has happened and adds it to the stats.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

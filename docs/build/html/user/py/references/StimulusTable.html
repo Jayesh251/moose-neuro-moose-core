@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StimulusTable &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>StimulusTable</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/StimulusTable.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stimulustable">
+<h1>StimulusTable<a class="headerlink" href="#stimulustable" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="StimulusTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StimulusTable</span></span><a class="headerlink" href="#StimulusTable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#StimulusTable.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for process and reinit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setStartTime">
+<span class="sig-name descname"><span class="pre">setStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setStartTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getStartTime">
+<span class="sig-name descname"><span class="pre">getStartTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getStartTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setStopTime">
+<span class="sig-name descname"><span class="pre">setStopTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setStopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getStopTime">
+<span class="sig-name descname"><span class="pre">getStopTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getStopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setLoopTime">
+<span class="sig-name descname"><span class="pre">setLoopTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setLoopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getLoopTime">
+<span class="sig-name descname"><span class="pre">getLoopTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getLoopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setStepSize">
+<span class="sig-name descname"><span class="pre">setStepSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setStepSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getStepSize">
+<span class="sig-name descname"><span class="pre">getStepSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getStepSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setStepPosition">
+<span class="sig-name descname"><span class="pre">setStepPosition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setStepPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getStepPosition">
+<span class="sig-name descname"><span class="pre">getStepPosition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getStepPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.setDoLoop">
+<span class="sig-name descname"><span class="pre">setDoLoop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.setDoLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.getDoLoop">
+<span class="sig-name descname"><span class="pre">getDoLoop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.getDoLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call, updates internal time stamp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StimulusTable.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#StimulusTable.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#StimulusTable.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends out tabulated data according to lookup parameters.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.startTime">
+<span class="sig-name descname"><span class="pre">startTime</span></span><a class="headerlink" href="#StimulusTable.startTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Start time used when table is emitting values. For lookupvalues below this, the table just sends out its zero entry.Corresponds to zeroth entry of table.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.stopTime">
+<span class="sig-name descname"><span class="pre">stopTime</span></span><a class="headerlink" href="#StimulusTable.stopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Time to stop emitting values.If time exceeds this, then the table sends out its last entry.The stopTime corresponds to the last entry of table.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.loopTime">
+<span class="sig-name descname"><span class="pre">loopTime</span></span><a class="headerlink" href="#StimulusTable.loopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      If looping, this is the time between successive cycle starts.Defaults to the difference between stopTime and startTime, so that the output waveform cycles with precisely the same duration as the table contents.If larger than stopTime - startTime, then it pauses at the last table value till it is time to go around again.If smaller than stopTime - startTime, then it begins the next cycle even before the first one has reached the end of the table.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.stepSize">
+<span class="sig-name descname"><span class="pre">stepSize</span></span><a class="headerlink" href="#StimulusTable.stepSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Increment in lookup (x) value on every timestep. If it isless than or equal to zero, the StimulusTable uses the current timeas the lookup value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.stepPosition">
+<span class="sig-name descname"><span class="pre">stepPosition</span></span><a class="headerlink" href="#StimulusTable.stepPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Current value of lookup (x) value.If stepSize is less than or equal to zero, this is set tothe current time to use as the lookup value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StimulusTable.doLoop">
+<span class="sig-name descname"><span class="pre">doLoop</span></span><a class="headerlink" href="#StimulusTable.doLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      Flag: Should it loop around to startTime once it has reachedstopTime. Default (zero) is to do a single pass.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
