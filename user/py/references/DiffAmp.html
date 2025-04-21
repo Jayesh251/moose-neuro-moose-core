@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiffAmp &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DiffAmp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/DiffAmp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="diffamp">
+<h1>DiffAmp<a class="headerlink" href="#diffamp" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiffAmp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DiffAmp</span></span><a class="headerlink" href="#DiffAmp" title="Permalink to this definition">¶</a></dt>
+<dd><p>A difference amplifier. Output is the difference between the total plus inputs and the total minus inputs multiplied by gain. Gain can be set statically as a field or can be a destination message and thus dynamically determined by the output of another object. Same as GENESIS diffamp object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiffAmp.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#DiffAmp.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process messages from the scheduler objects.The first entry in the shared msg is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt and so on. The second entry is a MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.setGain">
+<span class="sig-name descname"><span class="pre">setGain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.setGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.getGain">
+<span class="sig-name descname"><span class="pre">getGain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.getGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.setSaturation">
+<span class="sig-name descname"><span class="pre">setSaturation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.setSaturation" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.getSaturation">
+<span class="sig-name descname"><span class="pre">getSaturation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.getSaturation" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.getOutputValue">
+<span class="sig-name descname"><span class="pre">getOutputValue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.getOutputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.gainIn">
+<span class="sig-name descname"><span class="pre">gainIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.gainIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Destination message to control gain dynamically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.plusIn">
+<span class="sig-name descname"><span class="pre">plusIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.plusIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Positive input terminal of the amplifier. All the messages connected here are summed up to get total positive input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.minusIn">
+<span class="sig-name descname"><span class="pre">minusIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.minusIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Negative input terminal of the amplifier. All the messages connected here are summed up to get total positive input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call, updates internal time stamp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DiffAmp.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DiffAmp.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiffAmp.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#DiffAmp.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Current output level.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiffAmp.gain">
+<span class="sig-name descname"><span class="pre">gain</span></span><a class="headerlink" href="#DiffAmp.gain" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Gain of the amplifier. The output of the amplifier is the difference between the totals in plus and minus inputs multiplied by the gain. Defaults to 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiffAmp.saturation">
+<span class="sig-name descname"><span class="pre">saturation</span></span><a class="headerlink" href="#DiffAmp.saturation" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Saturation is the bound on the output. If output goes beyond the +/-saturation range, it is truncated to the closer of +saturation and -saturation. Defaults to the maximum double precision floating point number representable on the system.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiffAmp.outputValue">
+<span class="sig-name descname"><span class="pre">outputValue</span></span><a class="headerlink" href="#DiffAmp.outputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Output of the amplifier, i.e. gain * (plus - minus).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSDFWriter &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>NSDFWriter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/NSDFWriter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nsdfwriter">
+<h1>NSDFWriter<a class="headerlink" href="#nsdfwriter" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="NSDFWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NSDFWriter</span></span><a class="headerlink" href="#NSDFWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>NSDF file writer for saving data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="NSDFWriter.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#NSDFWriter.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message to receive process and reinit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="NSDFWriter.setNumEventInput">
+<span class="sig-name descname"><span class="pre">setNumEventInput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#NSDFWriter.setNumEventInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns number of field entries in field array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="NSDFWriter.getNumEventInput">
+<span class="sig-name descname"><span class="pre">getNumEventInput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#NSDFWriter.getNumEventInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests number of field entries in field array.The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="NSDFWriter.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#NSDFWriter.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handle process calls. Collects data in buffer and if number of steps since last write exceeds flushLimit, writes to file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="NSDFWriter.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#NSDFWriter.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Reinitialize the object. If the current file handle is valid, it tries to close that and open the file specified in current filename field.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

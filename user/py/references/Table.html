@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Table &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Table</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Table.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="table">
+<h1>Table<a class="headerlink" href="#table" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Table">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Table</span></span><a class="headerlink" href="#Table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Table for accumulating data values, or spike timings. Can either receive incoming doubles, or can explicitly request values from fields provided they are doubles. The latter mode of use is preferable if you wish to have independent control of how often you sample from the output variable.
+Typically used for storing simulation output into memory, or to file when stream is set to True
+There are two functionally identical variants of the Table class: Table and Table2. Their only difference is that the default scheduling of the Table (Clock Tick 8, dt = 0.1 ms ) makes it suitable for tracking electrical compartmental models of neurons and networks.
+Table2 (Clock Tick 18, dt = 1.0 s) is good for tracking biochemical signaling pathway outputs.
+These are just the default values and Tables can be assigned to any Clock Tick and timestep in the usual manner.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#Table.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for process and reinit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.setThreshold">
+<span class="sig-name descname"><span class="pre">setThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.setThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.getThreshold">
+<span class="sig-name descname"><span class="pre">getThreshold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.getThreshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.setFormat">
+<span class="sig-name descname"><span class="pre">setFormat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.setFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.getFormat">
+<span class="sig-name descname"><span class="pre">getFormat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.getFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.setName">
+<span class="sig-name descname"><span class="pre">setName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.setName" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.getName">
+<span class="sig-name descname"><span class="pre">getName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.getName" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.setOutfile">
+<span class="sig-name descname"><span class="pre">setOutfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.setOutfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.getOutfile">
+<span class="sig-name descname"><span class="pre">getOutfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.getOutfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.setUseStreamer">
+<span class="sig-name descname"><span class="pre">setUseStreamer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.setUseStreamer" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.getUseStreamer">
+<span class="sig-name descname"><span class="pre">getUseStreamer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.getUseStreamer" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.input">
+<span class="sig-name descname"><span class="pre">input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.input" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Fills data into table. Also handles data sent back following request</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.spike">
+<span class="sig-name descname"><span class="pre">spike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.spike" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Fills spike timings into the Table. Signal has to exceed thresh</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call, updates internal time stamp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Table.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Table.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.requestOut">
+<span class="sig-name descname"><span class="pre">requestOut</span></span><a class="headerlink" href="#Table.requestOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>PSt6vectorIdSaIdEE (<em>source message field</em>)      Sends request for a field to target object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><a class="headerlink" href="#Table.threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      threshold used when Table acts as a buffer for spikes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.format">
+<span class="sig-name descname"><span class="pre">format</span></span><a class="headerlink" href="#Table.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Data format for table: default csv</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#Table.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Name of the table.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.outfile">
+<span class="sig-name descname"><span class="pre">outfile</span></span><a class="headerlink" href="#Table.outfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Set the name of file to which data is written to. If set,  streaming support is automatically enabled.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Table.useStreamer">
+<span class="sig-name descname"><span class="pre">useStreamer</span></span><a class="headerlink" href="#Table.useStreamer" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      When set to true, write to a file instead writing in memory. If <cite>outfile</cite> is not set, streamer writes to default path.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

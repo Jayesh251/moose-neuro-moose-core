@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeqSynHandler &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SeqSynHandler</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/SeqSynHandler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="seqsynhandler">
+<h1>SeqSynHandler<a class="headerlink" href="#seqsynhandler" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SeqSynHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SeqSynHandler</span></span><a class="headerlink" href="#SeqSynHandler" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>The SeqSynHandler handles synapses that recognize sequentially ordered input, where the ordering is both in space and time. It assumes that the N input synapses are ordered and equally spaced along a single linear vector.</dt><dd><p>To do this it maintains a record of recent synaptic input, for a duration of <em>historyTime</em>, at a time interval <em>seqDt</em>. <em>SeqDt</em> is typically longer than the simulation timestep <em>dt</em> for the synapse, and cannot be shorter. <em>SeqDt</em> should represent the characteristic time of advance of the sequence.</p>
+</dd>
+</dl>
+<p>The SeqSynHandler uses a 2-D kernel to define how to recognize a sequence, with dependence both on space and history. This kernel is defined by the <em>kernelEquation</em> as a mathematical expression in x (synapse number) and t (time).It computes a vector with the local <em>response</em> term for each point along all inputs, by taking a 2-d convolution of the kernel with the history[time][synapse#] matrix.
+The local response can affect the synapse in three ways: 1. It can sum the entire response vector, scale by the <em>responseScale</em> term, and send to the synapse as a steady activation. Consider this a cell-wide immediate response to a sequence that it likes.
+2. It do an instantaneous scaling of the weight of each individual synapse by the corresponding entry in the response vector. It uses the <em>weightScale</em> term to do this. Consider this a short-term plasticity effect on specific synapses.
+3. It can do long-term plasticity of each individual synapse using the matched local entries in the response vector and individual synapse history as inputs to the learning rule. This is not yet implemented.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setNumSynapse">
+<span class="sig-name descname"><span class="pre">setNumSynapse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setNumSynapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns number of field entries in field array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getNumSynapse">
+<span class="sig-name descname"><span class="pre">getNumSynapse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getNumSynapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests number of field entries in field array.The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setKernelEquation">
+<span class="sig-name descname"><span class="pre">setKernelEquation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setKernelEquation" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getKernelEquation">
+<span class="sig-name descname"><span class="pre">getKernelEquation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getKernelEquation" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setKernelWidth">
+<span class="sig-name descname"><span class="pre">setKernelWidth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setKernelWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getKernelWidth">
+<span class="sig-name descname"><span class="pre">getKernelWidth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getKernelWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setSeqDt">
+<span class="sig-name descname"><span class="pre">setSeqDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setSeqDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getSeqDt">
+<span class="sig-name descname"><span class="pre">getSeqDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getSeqDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setHistoryTime">
+<span class="sig-name descname"><span class="pre">setHistoryTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setHistoryTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getHistoryTime">
+<span class="sig-name descname"><span class="pre">getHistoryTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getHistoryTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setResponseScale">
+<span class="sig-name descname"><span class="pre">setResponseScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setResponseScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getResponseScale">
+<span class="sig-name descname"><span class="pre">getResponseScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getResponseScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getSeqActivation">
+<span class="sig-name descname"><span class="pre">getSeqActivation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getSeqActivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.setWeightScale">
+<span class="sig-name descname"><span class="pre">setWeightScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.setWeightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getWeightScale">
+<span class="sig-name descname"><span class="pre">getWeightScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getWeightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getWeightScaleVec">
+<span class="sig-name descname"><span class="pre">getWeightScaleVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getWeightScaleVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getKernel">
+<span class="sig-name descname"><span class="pre">getKernel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getKernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SeqSynHandler.getHistory">
+<span class="sig-name descname"><span class="pre">getHistory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SeqSynHandler.getHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.kernelEquation">
+<span class="sig-name descname"><span class="pre">kernelEquation</span></span><a class="headerlink" href="#SeqSynHandler.kernelEquation" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Equation in x and t to define kernel for sequence recognition</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.kernelWidth">
+<span class="sig-name descname"><span class="pre">kernelWidth</span></span><a class="headerlink" href="#SeqSynHandler.kernelWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Width of kernel, i.e., number of synapses taking part in seq.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.seqDt">
+<span class="sig-name descname"><span class="pre">seqDt</span></span><a class="headerlink" href="#SeqSynHandler.seqDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Characteristic time for advancing the sequence.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.historyTime">
+<span class="sig-name descname"><span class="pre">historyTime</span></span><a class="headerlink" href="#SeqSynHandler.historyTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Duration to keep track of history of inputs to all synapses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.responseScale">
+<span class="sig-name descname"><span class="pre">responseScale</span></span><a class="headerlink" href="#SeqSynHandler.responseScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Scaling factor for sustained activation of synapse by seq</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.seqActivation">
+<span class="sig-name descname"><span class="pre">seqActivation</span></span><a class="headerlink" href="#SeqSynHandler.seqActivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Reports summed activation of synaptic channel by sequence</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.weightScale">
+<span class="sig-name descname"><span class="pre">weightScale</span></span><a class="headerlink" href="#SeqSynHandler.weightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Scaling factor for weight of each synapse by response vector</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.weightScaleVec">
+<span class="sig-name descname"><span class="pre">weightScaleVec</span></span><a class="headerlink" href="#SeqSynHandler.weightScaleVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Vector of  weight scaling for each synapse</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.kernel">
+<span class="sig-name descname"><span class="pre">kernel</span></span><a class="headerlink" href="#SeqSynHandler.kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      All entries of kernel, as a linear vector</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SeqSynHandler.history">
+<span class="sig-name descname"><span class="pre">history</span></span><a class="headerlink" href="#SeqSynHandler.history" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      All entries of history, as a linear vector</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

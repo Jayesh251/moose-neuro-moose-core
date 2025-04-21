@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarkovSolverBase &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MarkovSolverBase</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/MarkovSolverBase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="markovsolverbase">
+<h1>MarkovSolverBase<a class="headerlink" href="#markovsolverbase" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="MarkovSolverBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarkovSolverBase</span></span><a class="headerlink" href="#MarkovSolverBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solver for Markov Channel.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#MarkovSolverBase.channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This message couples the MarkovSolverBase to the Compartment. The compartment needs Vm in order to look up the correct matrix exponential for computing the state.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#MarkovSolverBase.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process message from thescheduler. The first entry is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt andso on. The second entry is a MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.handleVm">
+<span class="sig-name descname"><span class="pre">handleVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.handleVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles incoming message containing voltage information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.ligandConc">
+<span class="sig-name descname"><span class="pre">ligandConc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.ligandConc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles incoming message containing ligand concentration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Setups the table of matrix exponentials associated with the solver object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getQ">
+<span class="sig-name descname"><span class="pre">getQ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getState">
+<span class="sig-name descname"><span class="pre">getState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setInitialState">
+<span class="sig-name descname"><span class="pre">setInitialState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setInitialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getInitialState">
+<span class="sig-name descname"><span class="pre">getInitialState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getInitialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setXmin">
+<span class="sig-name descname"><span class="pre">setXmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setXmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getXmin">
+<span class="sig-name descname"><span class="pre">getXmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getXmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setXmax">
+<span class="sig-name descname"><span class="pre">setXmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setXmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getXmax">
+<span class="sig-name descname"><span class="pre">getXmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getXmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setXdivs">
+<span class="sig-name descname"><span class="pre">setXdivs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setXdivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getXdivs">
+<span class="sig-name descname"><span class="pre">getXdivs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getXdivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getInvdx">
+<span class="sig-name descname"><span class="pre">getInvdx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getInvdx" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setYmin">
+<span class="sig-name descname"><span class="pre">setYmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setYmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getYmin">
+<span class="sig-name descname"><span class="pre">getYmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getYmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setYmax">
+<span class="sig-name descname"><span class="pre">setYmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setYmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getYmax">
+<span class="sig-name descname"><span class="pre">getYmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getYmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.setYdivs">
+<span class="sig-name descname"><span class="pre">setYdivs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.setYdivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getYdivs">
+<span class="sig-name descname"><span class="pre">getYdivs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getYdivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovSolverBase.getInvdy">
+<span class="sig-name descname"><span class="pre">getInvdy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovSolverBase.getInvdy" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.stateOut">
+<span class="sig-name descname"><span class="pre">stateOut</span></span><a class="headerlink" href="#MarkovSolverBase.stateOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>source message field</em>)      Sends updated state to the MarkovChannel class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.Q">
+<span class="sig-name descname"><span class="pre">Q</span></span><a class="headerlink" href="#MarkovSolverBase.Q" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt; vector&lt;double&gt; &gt; (<em>value field</em>)      Instantaneous rate matrix.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.state">
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#MarkovSolverBase.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Current state of the channel.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.initialState">
+<span class="sig-name descname"><span class="pre">initialState</span></span><a class="headerlink" href="#MarkovSolverBase.initialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Initial state of the channel.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.xmin">
+<span class="sig-name descname"><span class="pre">xmin</span></span><a class="headerlink" href="#MarkovSolverBase.xmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Minimum value for x axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.xmax">
+<span class="sig-name descname"><span class="pre">xmax</span></span><a class="headerlink" href="#MarkovSolverBase.xmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Maximum value for x axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.xdivs">
+<span class="sig-name descname"><span class="pre">xdivs</span></span><a class="headerlink" href="#MarkovSolverBase.xdivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      # of divisions on x axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.invdx">
+<span class="sig-name descname"><span class="pre">invdx</span></span><a class="headerlink" href="#MarkovSolverBase.invdx" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Reciprocal of increment on x axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.ymin">
+<span class="sig-name descname"><span class="pre">ymin</span></span><a class="headerlink" href="#MarkovSolverBase.ymin" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Minimum value for y axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.ymax">
+<span class="sig-name descname"><span class="pre">ymax</span></span><a class="headerlink" href="#MarkovSolverBase.ymax" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Maximum value for y axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.ydivs">
+<span class="sig-name descname"><span class="pre">ydivs</span></span><a class="headerlink" href="#MarkovSolverBase.ydivs" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      # of divisions on y axis of lookup table</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovSolverBase.invdy">
+<span class="sig-name descname"><span class="pre">invdy</span></span><a class="headerlink" href="#MarkovSolverBase.invdy" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Reciprocal of increment on y axis of lookup table</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

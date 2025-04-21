@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spine &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Spine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Spine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spine">
+<h1>Spine<a class="headerlink" href="#spine" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Spine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Spine</span></span><a class="headerlink" href="#Spine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spine wrapper, used to change its morphology typically by a message from an adaptor. The Spine class takes care of a lot of resultant scaling to electrical, chemical, and diffusion properties.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setShaftLength">
+<span class="sig-name descname"><span class="pre">setShaftLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setShaftLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getShaftLength">
+<span class="sig-name descname"><span class="pre">getShaftLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getShaftLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setShaftDiameter">
+<span class="sig-name descname"><span class="pre">setShaftDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setShaftDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getShaftDiameter">
+<span class="sig-name descname"><span class="pre">getShaftDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getShaftDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setHeadLength">
+<span class="sig-name descname"><span class="pre">setHeadLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setHeadLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getHeadLength">
+<span class="sig-name descname"><span class="pre">getHeadLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getHeadLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setHeadDiameter">
+<span class="sig-name descname"><span class="pre">setHeadDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setHeadDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getHeadDiameter">
+<span class="sig-name descname"><span class="pre">getHeadDiameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getHeadDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setPsdArea">
+<span class="sig-name descname"><span class="pre">setPsdArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setPsdArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getPsdArea">
+<span class="sig-name descname"><span class="pre">getPsdArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getPsdArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setHeadVolume">
+<span class="sig-name descname"><span class="pre">setHeadVolume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setHeadVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getHeadVolume">
+<span class="sig-name descname"><span class="pre">getHeadVolume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getHeadVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.setTotalLength">
+<span class="sig-name descname"><span class="pre">setTotalLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.setTotalLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Spine.getTotalLength">
+<span class="sig-name descname"><span class="pre">getTotalLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Spine.getTotalLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.shaftLength">
+<span class="sig-name descname"><span class="pre">shaftLength</span></span><a class="headerlink" href="#Spine.shaftLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Length of spine shaft.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.shaftDiameter">
+<span class="sig-name descname"><span class="pre">shaftDiameter</span></span><a class="headerlink" href="#Spine.shaftDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Diameter of spine shaft.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.headLength">
+<span class="sig-name descname"><span class="pre">headLength</span></span><a class="headerlink" href="#Spine.headLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Length of spine head.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.headDiameter">
+<span class="sig-name descname"><span class="pre">headDiameter</span></span><a class="headerlink" href="#Spine.headDiameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Diameter of spine head, and also the diameter of the PSD.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.psdArea">
+<span class="sig-name descname"><span class="pre">psdArea</span></span><a class="headerlink" href="#Spine.psdArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Area of the Post synaptic density, PSD. This is the same as the cross-section area of spine head, perpendicular to shaft. Assumes that the head is a cylinder and that its length does not change.
+This is useful to scale # of surface molecules on the PSD.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.headVolume">
+<span class="sig-name descname"><span class="pre">headVolume</span></span><a class="headerlink" href="#Spine.headVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Volume of spine head, treating it as a cylinder. When this is scaled by the user, both the diameter and the length of the spine head scale by the cube root of the ratio to the previous volume. The diameter of the PSD is pegged to the diameter fo the spine head.
+This is useful to scale total # of molecules in the head.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Spine.totalLength">
+<span class="sig-name descname"><span class="pre">totalLength</span></span><a class="headerlink" href="#Spine.totalLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Length of entire spine. Scales both the length of the shaft and of the spine head, without changing any of the diameters.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

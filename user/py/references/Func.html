@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Func &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Func</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Func.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="func">
+<h1>Func<a class="headerlink" href="#func" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Func">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Func</span></span><a class="headerlink" href="#Func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Func: general purpose function calculator using real numbers. It can
+parse mathematical expression defining a function and evaluate it
+and/or its derivative for specified variable values.
+The variables can be input from other moose objects. In case of
+arbitrary variable names, the source message must have the variable
+name as the first argument. For most common cases, input messages to
+set x, y, z and xy, xyz are made available without such
+requirement. This class handles only real numbers
+(C-double). Predefined constants are: pi=3.141592...,
+e=2.718281...</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#Func.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process messages from the scheduler objects.The first entry in the shared msg is a MsgDest for the Process operation. It has a single argument, ProcInfo, which holds lots of information about current time, thread, dt and so on. The second entry is a MsgDest for the Reinit operation. It also uses ProcInfo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getValue">
+<span class="sig-name descname"><span class="pre">getValue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getDerivative">
+<span class="sig-name descname"><span class="pre">getDerivative</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getDerivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setMode">
+<span class="sig-name descname"><span class="pre">setMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getMode">
+<span class="sig-name descname"><span class="pre">getMode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setExpr">
+<span class="sig-name descname"><span class="pre">setExpr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setExpr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getExpr">
+<span class="sig-name descname"><span class="pre">getExpr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getExpr" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setVar">
+<span class="sig-name descname"><span class="pre">setVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getVar">
+<span class="sig-name descname"><span class="pre">getVar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getVar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getVars">
+<span class="sig-name descname"><span class="pre">getVars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getVars" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setX">
+<span class="sig-name descname"><span class="pre">setX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setX" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getX">
+<span class="sig-name descname"><span class="pre">getX</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getX" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setY">
+<span class="sig-name descname"><span class="pre">setY</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setY" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getY">
+<span class="sig-name descname"><span class="pre">getY</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getY" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.setZ">
+<span class="sig-name descname"><span class="pre">setZ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.setZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.getZ">
+<span class="sig-name descname"><span class="pre">getZ</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.getZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.varIn">
+<span class="sig-name descname"><span class="pre">varIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.varIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handle value for specified variable coming from other objects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.xIn">
+<span class="sig-name descname"><span class="pre">xIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.xIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handle value for variable named x. This is a shorthand. If the
+expression does not have any variable named x, this the first variable
+in the sequence <cite>vars</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.yIn">
+<span class="sig-name descname"><span class="pre">yIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.yIn" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>(<em>destination message field</em>)      Handle value for variable named y. This is a utility for two/three</dt><dd><p>variable functions where the y value comes from a source separate
+from that of x. This is a shorthand. If the</p>
+</dd>
+</dl>
+<p>expression does not have any variable named y, this the second
+variable in the sequence <cite>vars</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.zIn">
+<span class="sig-name descname"><span class="pre">zIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.zIn" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>(<em>destination message field</em>)      Handle value for variable named z. This is a utility for three</dt><dd><p>variable functions where the z value comes from a source separate
+from that of x or y. This is a shorthand. If the expression does not
+have any variable named y, this the second variable in the sequence <cite>vars</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.xyIn">
+<span class="sig-name descname"><span class="pre">xyIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.xyIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handle value for variables x and y for two-variable function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.xyzIn">
+<span class="sig-name descname"><span class="pre">xyzIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.xyzIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handle value for variables x, y and z for three-variable function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call, updates internal time stamp.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Func.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Func.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.valueOut">
+<span class="sig-name descname"><span class="pre">valueOut</span></span><a class="headerlink" href="#Func.valueOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Evaluated value of the function for the current variable values.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.derivativeOut">
+<span class="sig-name descname"><span class="pre">derivativeOut</span></span><a class="headerlink" href="#Func.derivativeOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Value of derivative of the function for the current variable values</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.value">
+<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#Func.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Result of the function evaluation with current variable values.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.derivative">
+<span class="sig-name descname"><span class="pre">derivative</span></span><a class="headerlink" href="#Func.derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Derivative of the function at given variable values.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#Func.mode" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>unsigned int (<em>value field</em>)      Mode of operation:</dt><dd><p>1: only the function value will be calculated
+2: only the derivative will be calculated
+3: both function value and derivative at current variable values will be calculated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.expr">
+<span class="sig-name descname"><span class="pre">expr</span></span><a class="headerlink" href="#Func.expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Mathematical expression defining the function. The underlying parser
+is muParser. In addition to the available functions and operators  from
+muParser, some more functions are added.</p>
+<p>Functions
+Name        args    explanation
+sin         1       sine function
+cos         1       cosine function
+tan         1       tangens function
+asin        1       arcus sine function
+acos        1       arcus cosine function
+atan        1       arcus tangens function
+sinh        1       hyperbolic sine function
+cosh        1       hyperbolic cosine
+tanh        1       hyperbolic tangens function
+asinh       1       hyperbolic arcus sine function
+acosh       1       hyperbolic arcus tangens function
+atanh       1       hyperbolic arcur tangens function
+log2        1       logarithm to the base 2
+log10       1       logarithm to the base 10
+log         1       logarithm to the base 10
+ln          1       logarithm to base e (2.71828...)
+exp         1       e raised to the power of x
+sqrt        1       square root of a value
+sign        1       sign function -1 if x&lt;0; 1 if x&gt;0
+rint        1       round to nearest integer
+abs         1       absolute value
+min         var.    min of all arguments
+max         var.    max of all arguments
+sum         var.    sum of all arguments
+avg         var.    mean value of all arguments
+rand        1       rand(seed), random float between 0 and 1,</p>
+<blockquote>
+<div><p>if seed = -1, then a 'random' seed is created.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>rand2       3       rand(a, b, seed), random float between a and b,</dt><dd><p>if seed = -1, a 'random' seed is created using either
+by random_device or by reading system clock</p>
+</dd>
+</dl>
+<p>Operators
+Op  meaning         prioroty
+=   assignement     -1
+&amp;&amp;  logical and     1
+||  logical or      2
+&lt;=  less or equal   4
+&gt;=  greater or equal        4
+!=  not equal       4
+==  equal   4
+&gt;   greater than    4
+&lt;   less than       4
++   addition        5
+-   subtraction     5
+*   multiplication  6
+/   division        6
+^   raise x to the power of y       7</p>
+<p>?:  if then else operator   C++ style syntax</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.vars">
+<span class="sig-name descname"><span class="pre">vars</span></span><a class="headerlink" href="#Func.vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;string&gt; (<em>value field</em>)      Variable names in the expression</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#Func.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Value for variable named x. This is a shorthand. If the
+expression does not have any variable named x, this the first variable
+in the sequence <cite>vars</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#Func.y" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>double (<em>value field</em>)      Value for variable named y. This is a utility for two/three</dt><dd><p>variable functions where the y value comes from a source separate
+from that of x. This is a shorthand. If the</p>
+</dd>
+</dl>
+<p>expression does not have any variable named y, this the second
+variable in the sequence <cite>vars</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.z">
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#Func.z" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>double (<em>value field</em>)      Value for variable named z. This is a utility for three</dt><dd><p>variable functions where the z value comes from a source separate
+from that of x or z. This is a shorthand. If the expression does not
+have any variable named z, this the third variable in the sequence <cite>vars</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Func.var">
+<span class="sig-name descname"><span class="pre">var</span></span><a class="headerlink" href="#Func.var" title="Permalink to this definition">¶</a></dt>
+<dd><p>string,double (<em>lookup field</em>)      Lookup table for variable values.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

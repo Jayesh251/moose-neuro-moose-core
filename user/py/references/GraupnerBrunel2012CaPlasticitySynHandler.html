@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GraupnerBrunel2012CaPlasticitySynHandler &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GraupnerBrunel2012CaPlasticitySynHandler</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/GraupnerBrunel2012CaPlasticitySynHandler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="graupnerbrunel2012caplasticitysynhandler">
+<h1>GraupnerBrunel2012CaPlasticitySynHandler<a class="headerlink" href="#graupnerbrunel2012caplasticitysynhandler" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GraupnerBrunel2012CaPlasticitySynHandler</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>The GraupnerBrunel2012CaPlasticitySynHandler handles synapseswith Ca-based plasticity as per Higgins et al. 2014 and Graupner and Brunel 2012.Note 1:   Here, Ca ('chemical Ca') is updated only at each pre-spike, pre-spike+delayD and post-spike!   So it is inaccurate to use it for say Ca-dependent K channels in the electrical compartment,   for which you use are advised to use the CaPool i.e. 'electrical Ca'.Note 2:   Ca here is post-synaptic 'chemical Ca' common for all synapses in this SynHandler,   so weights of all pre-synapses connected to this SynHandler get updated   at each pre-spike, pre-spike+delayD and post-spike!   So if all pre-synaptic weights start out the same, they remain the same!!   If you want to consider each pre-synapse independently,   have independent SynHandlers for each synapse.   If these SynHandlers are in the same electrical compartment,   you're essentially assuming these are on different spines,   with their own 'chemical Ca' which won't match the   'electrical Ca' of the compartment (=dendrite).   If you put each SynHandler with a single synapse   in its own electrical compartment (=spine),   only then can you have an 'electrical Ca'   corresponding to the 'chemical Ca'.Three priority queues are used to manage pre, post, and pre+delayD spikes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setNumSynapse">
+<span class="sig-name descname"><span class="pre">setNumSynapse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setNumSynapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns number of field entries in field array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getNumSynapse">
+<span class="sig-name descname"><span class="pre">getNumSynapse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getNumSynapse" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests number of field entries in field array.The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.addPostSpike">
+<span class="sig-name descname"><span class="pre">addPostSpike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.addPostSpike" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles arriving spike messages from post-synaptic neuron, inserts into postEvent queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setCa">
+<span class="sig-name descname"><span class="pre">setCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getCa">
+<span class="sig-name descname"><span class="pre">getCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setCaInit">
+<span class="sig-name descname"><span class="pre">setCaInit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setCaInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getCaInit">
+<span class="sig-name descname"><span class="pre">getCaInit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getCaInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setTauCa">
+<span class="sig-name descname"><span class="pre">setTauCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setTauCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getTauCa">
+<span class="sig-name descname"><span class="pre">getTauCa</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getTauCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setTauSyn">
+<span class="sig-name descname"><span class="pre">setTauSyn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setTauSyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getTauSyn">
+<span class="sig-name descname"><span class="pre">getTauSyn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getTauSyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setCaPre">
+<span class="sig-name descname"><span class="pre">setCaPre</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setCaPre" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getCaPre">
+<span class="sig-name descname"><span class="pre">getCaPre</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getCaPre" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setCaPost">
+<span class="sig-name descname"><span class="pre">setCaPost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setCaPost" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getCaPost">
+<span class="sig-name descname"><span class="pre">getCaPost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getCaPost" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setDelayD">
+<span class="sig-name descname"><span class="pre">setDelayD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setDelayD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getDelayD">
+<span class="sig-name descname"><span class="pre">getDelayD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getDelayD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setThetaP">
+<span class="sig-name descname"><span class="pre">setThetaP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setThetaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getThetaP">
+<span class="sig-name descname"><span class="pre">getThetaP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getThetaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setThetaD">
+<span class="sig-name descname"><span class="pre">setThetaD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setThetaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getThetaD">
+<span class="sig-name descname"><span class="pre">getThetaD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getThetaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setGammaP">
+<span class="sig-name descname"><span class="pre">setGammaP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setGammaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getGammaP">
+<span class="sig-name descname"><span class="pre">getGammaP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getGammaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setGammaD">
+<span class="sig-name descname"><span class="pre">setGammaD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setGammaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getGammaD">
+<span class="sig-name descname"><span class="pre">getGammaD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getGammaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setWeightMax">
+<span class="sig-name descname"><span class="pre">setWeightMax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setWeightMax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getWeightMax">
+<span class="sig-name descname"><span class="pre">getWeightMax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getWeightMax" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setWeightMin">
+<span class="sig-name descname"><span class="pre">setWeightMin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setWeightMin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getWeightMin">
+<span class="sig-name descname"><span class="pre">getWeightMin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getWeightMin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setWeightScale">
+<span class="sig-name descname"><span class="pre">setWeightScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setWeightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getWeightScale">
+<span class="sig-name descname"><span class="pre">getWeightScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getWeightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setNoisy">
+<span class="sig-name descname"><span class="pre">setNoisy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setNoisy" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getNoisy">
+<span class="sig-name descname"><span class="pre">getNoisy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getNoisy" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setNoiseSD">
+<span class="sig-name descname"><span class="pre">setNoiseSD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setNoiseSD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getNoiseSD">
+<span class="sig-name descname"><span class="pre">getNoiseSD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getNoiseSD" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.setBistable">
+<span class="sig-name descname"><span class="pre">setBistable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.setBistable" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.getBistable">
+<span class="sig-name descname"><span class="pre">getBistable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.getBistable" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.Ca">
+<span class="sig-name descname"><span class="pre">Ca</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.Ca" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Ca is a post-synaptic decaying variable as a proxy for Ca concentrationand receives an impulse whenever a pre- or post- spike occurs.Caution: Ca is updated via an event-based rule, so it is only updated and validwhen a pre- or post- spike has occured, or at time delayD after a pre-spike.Do not use it to control a Ca dependent current, etc.See notes in the class Description: all pre-synapses get updated via the same post-synaptic Ca.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.CaInit">
+<span class="sig-name descname"><span class="pre">CaInit</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.CaInit" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      CaInit is the initial value for Ca</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.tauCa">
+<span class="sig-name descname"><span class="pre">tauCa</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.tauCa" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      tauCa is the time constant for decay of Ca</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.tauSyn">
+<span class="sig-name descname"><span class="pre">tauSyn</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.tauSyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      tauSyn is the time constant for synaptic weight evolution equation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.CaPre">
+<span class="sig-name descname"><span class="pre">CaPre</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.CaPre" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      CaPre is added to Ca on every pre-spike</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.CaPost">
+<span class="sig-name descname"><span class="pre">CaPost</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.CaPost" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      CaPost is added to Ca on every post-spike</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.delayD">
+<span class="sig-name descname"><span class="pre">delayD</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.delayD" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Time delay D after pre-spike, when Ca is increased by Capre. delayD represents NMDA rise time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.thetaP">
+<span class="sig-name descname"><span class="pre">thetaP</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.thetaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Potentiation threshold for CaUser must ensure thetaP&gt;thetaD, else simulation results will be wrong.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.thetaD">
+<span class="sig-name descname"><span class="pre">thetaD</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.thetaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Depression threshold for CaUser must ensure thetaP&gt;thetaD, else simulation results will be wrong.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.gammaP">
+<span class="sig-name descname"><span class="pre">gammaP</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.gammaP" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      gammaP is the potentiation factor for synaptic weight increase if Ca&gt;thetaP</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.gammaD">
+<span class="sig-name descname"><span class="pre">gammaD</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.gammaD" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      gammaD is the depression factor for synaptic weight decrease if Ca&gt;thetaD</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.weightMax">
+<span class="sig-name descname"><span class="pre">weightMax</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.weightMax" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      An upper bound on the weight</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.weightMin">
+<span class="sig-name descname"><span class="pre">weightMin</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.weightMin" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      A lower bound on the weight</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.weightScale">
+<span class="sig-name descname"><span class="pre">weightScale</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.weightScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Scale all pre-synaptic weights by weightScale before adding to activation (default 1.0)In the terminology of the paper Higgins et al 2012, weight is synaptic efficacy,while weightScale*weight is what finally is added to activation variable.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.noisy">
+<span class="sig-name descname"><span class="pre">noisy</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.noisy" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      If true, turn noise on as per noiseSD</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.noiseSD">
+<span class="sig-name descname"><span class="pre">noiseSD</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.noiseSD" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Standard deviation of noise added to Ca</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="GraupnerBrunel2012CaPlasticitySynHandler.bistable">
+<span class="sig-name descname"><span class="pre">bistable</span></span><a class="headerlink" href="#GraupnerBrunel2012CaPlasticitySynHandler.bistable" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool (<em>value field</em>)      If true, the synapse is bistable as in GraupnerBrunel2012 paper.The effect of potential on the weight update is usually ignorable if Ca is above thetaP and thetaD most of the time.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaptor &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Adaptor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Adaptor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="adaptor">
+<h1>Adaptor<a class="headerlink" href="#adaptor" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Adaptor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Adaptor</span></span><a class="headerlink" href="#Adaptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the adaptor class. It is used in interfacing different kinds of solver with each other, especially for electrical to chemical signeur models. The Adaptor class is the core of the API for interfacing between different solution engines. It is currently in use for interfacing between chemical and electrical simulations, but could be used for other cases such as mechanical models. The API for interfacing between solution engines rests on  the following capabilities of MOOSE. 1. The object-oriented interface with classes mapped to biological and modeling concepts such as electrical and chemical compartments, ion channels and molecular pools. 2. The invisible mapping of Solvers (Objects implementing numerical engines) to the object-oriented interface. Solvers work behind the  scenes to update the objects. 3. The messaging interface which allows any visible field to be  accessed and updated from any other object.  4. The clock-based scheduler which drives operations of any subset of objects at any interval. For example, this permits the operations of field access and update to take place at quite different timescales  from the numerical engines. 5. The implementation of Adaptor classes. These perform a linear transformation::       (y = scale * (x + inputOffset) + outputOffset )  where y is output and x is the input. The input is the average of any number of sources (through messages) and any number of timesteps. The output goes to any number of targets, again through messages. It is worth adding that messages can transport arbitrary data structures, so it would also be possible to devise a complicated opaque message directly between solvers. The implementation of Adaptors working on visible fields does this much more transparently and gives the user  facile control over the scaling transformatoin. These adaptors are used especially in the rdesigneur framework of MOOSE, which enables multiscale reaction-diffusion and electrical signaling models. As an example of this API in operation, I consider two mappings:  1. Calcium mapped from electrical to chemical computations. 2. phosphorylation state of a channel mapped to the channel conductance. 1. Calcium mapping. Problem statement. Calcium is computed in the electrical solver as one or more pools that are fed by calcium currents, and is removed by an exponential  decay process. This calcium pool is non-diffusive in the current  electrical solver. It has to be mapped to chemical calcium pools at a different spatial discretization, which do diffuse. In terms of the list of capabilities described above, this is how the API works.        1. The electrical model is partitioned into a number of electrical              compartments, some of which have the 'electrical' calcium pool          as child object in a UNIX filesystem-like tree. Thus the                'electrical' calcium is represented as an object with           concentration, location and so on.      2. The Solver computes the time-course of evolution of the calcium              concentration. Whenever any function queries the 'concentration'                field of the calcium object, the Solver provides this value.  3. Messaging couples the 'electrical' calcium pool concentration to       the adaptor (see point 5). This can either be a 'push' operation,       where the solver pushes out the calcium value at its internal   update rate, or a 'pull' operation where the adaptor requests   the calcium concentration.  4. The clock-based scheduler keeps the electrical and chemical solvers      ticking away, but it also can drive the operations of the adaptor.      Thus the rate of updates to and from the adaptor can be controlled.  5. The adaptor averages its inputs. Say the electrical solver is   going at a timestep of 50 usec, and the chemical solver at 5000         usec. The adaptor will take 100 samples of the electrical       concentration, and average them to compute the 'input' to the   linear scaling. Suppose that the electrical model has calcium units     of micromolar, but has a zero baseline. The chemical model has          units of millimolar and a baseline of 1e-4 millimolar. This gives:      y = 0.001x + 1e-4       At the end of this calculation, the adaptor will typically 'push'       its output to the chemical solver. Here we have similar situation       to item (1), where the chemical entities are calcium pools in   space, each with their own calcium concentration.       The messaging (3) determines another aspect of the mapping here:        the fan in or fan out. In this case, a single electrical        compartment may house 10 chemical compartments. Then the output         message from the adaptor goes to update the calcium pool        concentration on the appropriate 10 objects representing calcium        in each of the compartments. In much the same manner, the phosphorylation state can regulate channel properties.  1. The chemical model contains spatially distributed chemical pools   that represent the unphosphorylated state of the channel, which in      this example is the conducting form. This concentration of this         unphosphorylated state is affected by the various reaction-     diffusion events handled by the chemical solver, below.  2. The chemical solver updates the concentrations      of the pool objects as per reaction-diffusion calculations.  3. Messaging couples these concentration terms to the adaptor. In this     case we have many chemical pool objects for every electrical    compartment. There would be a single adaptor for each electrical        compartment, and it would average all the input values for calcium      concentration, one for each mesh point in the chemical calculation.     As before, the access to these fields could be through a 'push'         or a 'pull' operation.  4. The clock-based scheduler oeperates as above.  5. The adaptor averages the spatially distributed inputs from calcium,        and now does a different linear transform. In this case it converts     chemical concentration into the channel conductance. As before,         the 'electrical' channel is an object (point 1) with a field for        conductance, and this term is mapped into the internal data     structures of the solver (point 2) invisibly to the user.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#Adaptor.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      This is a shared message to receive Process message from the scheduler.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.setInputOffset">
+<span class="sig-name descname"><span class="pre">setInputOffset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.setInputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.getInputOffset">
+<span class="sig-name descname"><span class="pre">getInputOffset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.getInputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.setOutputOffset">
+<span class="sig-name descname"><span class="pre">setOutputOffset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.setOutputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.getOutputOffset">
+<span class="sig-name descname"><span class="pre">getOutputOffset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.getOutputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.setScale">
+<span class="sig-name descname"><span class="pre">setScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.setScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.getScale">
+<span class="sig-name descname"><span class="pre">getScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.getScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.getOutputValue">
+<span class="sig-name descname"><span class="pre">getOutputValue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.getOutputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.input">
+<span class="sig-name descname"><span class="pre">input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.input" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Input message to the adaptor. If multiple inputs are received, the system averages the inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles 'process' call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Adaptor.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Adaptor.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles 'reinit' call</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#Adaptor.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Sends the output value every timestep.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.requestOut">
+<span class="sig-name descname"><span class="pre">requestOut</span></span><a class="headerlink" href="#Adaptor.requestOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>PSt6vectorIdSaIdEE (<em>source message field</em>)      Sends out a request to a field with a double or array of doubles. Issued from the process call.Works for any number of targets.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.inputOffset">
+<span class="sig-name descname"><span class="pre">inputOffset</span></span><a class="headerlink" href="#Adaptor.inputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Offset to apply to input message, before scaling</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.outputOffset">
+<span class="sig-name descname"><span class="pre">outputOffset</span></span><a class="headerlink" href="#Adaptor.outputOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Offset to apply at output, after scaling</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#Adaptor.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Scaling factor to apply to input</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Adaptor.outputValue">
+<span class="sig-name descname"><span class="pre">outputValue</span></span><a class="headerlink" href="#Adaptor.outputValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      This is the linearly transformed output.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

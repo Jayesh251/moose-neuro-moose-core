@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuron Modeling &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Neuronal simulations in MOOSEGUI" href="elec_GUI.html" />
+    <link rel="prev" title="Single Neuron Electrical Aspects (BioPhysics)" href="elec.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction/index_introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_ckbk.html">Cook Book</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="elec.html">Single Neuron Electrical Aspects (BioPhysics)</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Neuron Modeling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elec_GUI.html">Neuronal simulations in MOOSEGUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elec_load_run.html">Load and Run simple models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elec_sim_eg.html">Simple Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="chem.html">Chemical Aspects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiscale.html">MultiScale Modeling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rdesigneur/index_rd.html">Rdesignuer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index_tut.html">Teaching Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../beginner.html">Beginner Guide</a> &raquo;</li>
+          <li><a href="index_ckbk.html">Cook Book</a> &raquo;</li>
+          <li><a href="elec.html">Single Neuron Electrical Aspects (BioPhysics)</a> &raquo;</li>
+      <li>Neuron Modeling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/cookbook/elec_mod.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="neuron-modeling">
+<h1>Neuron Modeling<a class="headerlink" href="#neuron-modeling" title="Permalink to this heading">¶</a></h1>
+<p>Neurons are modelled as equivalent electrical circuits. The morphology
+of a neuron can be broken into isopotential compartments connected by
+axial resistances R<sub>a</sub> denoting the cytoplasmic
+resistance. In each compartment, the neuronal membrane is represented as
+a capacitance C<sub>m</sub> with a shunt leak resistance
+R<sub>m</sub>. Electrochemical gradient (due to ion pumps)
+across the leaky membrane causes a voltage drive E<sub>m</sub>,
+that hyperpolarizes the inside of the cell membrane compared to the
+outside.</p>
+<p>Each voltage dependent ion channel, present on the membrane, is modelled
+as a voltage dependent conductance G<sub>k</sub> with gating
+kinetics, in series with an electrochemical voltage drive (battery)
+E<sub>k</sub>, across the membrane capacitance
+C<sub>m</sub>, as in the figure below.</p>
+<hr class="docutils" />
+<figure class="align-center" id="id2">
+<img alt="**Equivalent circuit of neuronal compartments**" src="../../../_images/neuroncompartment.png" />
+<figcaption>
+<p><span class="caption-text"><strong>Equivalent circuit of neuronal compartments</strong></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<hr class="docutils" />
+<p>Neurons fire action potentials / spikes (sharp rise and fall of membrane
+potential V<sub>m</sub>) due to voltage dependent channels.
+These result in opening of excitatory / inhibitory synaptic channels
+(conductances with batteries, similar to voltage gated channels) on
+other connected neurons in the network.</p>
+<p>MOOSE can handle large networks of detailed neurons, each with
+complicated channel dynamics. Further, MOOSE can integrate chemical
+signalling with electrical activity. Presently, creating and simulating
+these requires PyMOOSE scripting, but these will be incorporated into
+the GUI in the future.</p>
+<p>To understand channel kinetics and neuronal action potentials, run the
+Squid Axon demo installed along with MOOSEGUI and consult its
+help/tutorial.</p>
+<p>Read more about compartmental modelling in the first few chapters of the
+<a class="reference external" href="http://www.genesis-sim.org/GENESIS/iBoG/iBoGpdf/index.html">Book of Genesis</a>.</p>
+<p>Models can be defined in <a class="reference external" href="http://www.neuroml.org">NeuroML</a>, an XML
+format which is mostly supported across simulators. Channels, neuronal
+morphology (compartments), and networks can be specified using various
+levels of NeuroML, namely ChannelML, MorphML and NetworkML. Importing of
+cell models in the <a class="reference external" href="http://www.genesis-sim.org/GENESIS">GENESIS</a>
+.p format is supported for backward compatibitility.</p>
+<section id="modeling-details">
+<h2>Modeling details<a class="headerlink" href="#modeling-details" title="Permalink to this heading">¶</a></h2>
+<p>Some salient properties of neuronal building blocks in MOOSE are
+described below. Variables that are updated at every simulation time
+step are listed <strong>dynamically</strong>. Rest are parameters.</p>
+<ul>
+<li><p><strong>Compartment</strong>
+When you select a compartment, you can view and edit its properties
+in the right pane. V<sub>m</sub> and I<sub>m</sub>are plot-able.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>V<sub>m</sub></dt><dd><p>membrane potential (across C<sub>m</sub>) in Volts. It is a
+dynamical variable.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>C<sub>m</sub></dt><dd><p>membrane capacitance in Farads.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>E<sub>m</sub></dt><dd><p>membrane leak potential in Volts due
+to the electrochemical gradient setup by ion pumps.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>I<sub>m</sub></dt><dd><p>current in Amperes across the membrane via leak resistance R<sub>m</sub>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>inject</dt><dd><p>current in Amperes injected externally into the compartment.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>initVm</dt><dd><p>initial V<sub>m</sub> in Volts.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>R<sub>m</sub></dt><dd><p>membrane leak resistance in Ohms due to leaky channels.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>diameter</dt><dd><p>diameter of the compartment in metres.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>length</dt><dd><p>length of the compartment in metres.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p><strong>HHChannel</strong>
+Hodgkin-Huxley channel with voltage dependent dynamical gates.</p>
+<ul>
+<li><dl class="simple">
+<dt>Gbar</dt><dd><p>peak channel conductance in Siemens.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>E<sub>k</sub></dt><dd><p>reversal potential of the channel, due to electrochemical
+gradient of the ion(s) it allows.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>G<sub>k</sub></dt><dd><p>conductance of the channel in Siemens.
+G<sub>k</sub>(t) = Gbar × X(t)<sup>Xpower</sup> ×
+Y(t)<sup>Ypower</sup> × Z(t)<sup>Zpower</sup></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>I<sub>k</sub></dt><dd><dl class="simple">
+<dt>current through the channel into the neuron in Amperes.</dt><dd><p>I<sub>k</sub>(t) = G<sub>k</sub>(t) ×
+(E<sub>k</sub>-V<sub>m</sub>(t))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>X, Y, Z</dt><dd><p>gating variables (range 0.0 to 1.0) that may turn on or off as
+voltage increases with different time constants.</p>
+<blockquote>
+<div><p>dX(t)/dt = X<sub>inf</sub>/τ - X(t)/τ</p>
+<p>Here, X<sub>inf</sub> and τ are typically
+sigmoidal/linear/linear-sigmoidal functions of membrane
+potential V<sub>m</sub>, which are described in a ChannelML
+file and presently not editable from MOOSEGUI. Thus, a gate
+may open (X<sub>inf</sub>(V<sub>m</sub>) → 1) or close (X<sub>inf</sub>(V<sub>m</sub>) → 0) on increasing V<sub>m</sub>, with time constant τ(V<sub>m</sub>).</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Xpower, Ypower, Zpower</dt><dd><p>powers to which gates are raised in the G<sub>k</sub>(t)
+formula above.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p><strong>HHChannel2D</strong>
+The Hodgkin-Huxley channel2D can have the usual voltage dependent
+dynamical gates, and also gates that depend on voltage and an
+ionic concentration, as for say Ca-dependent K conductance. It has
+the properties of HHChannel above, and a few more, similar to
+in the <a class="reference external" href="http://www.genesis-sim.org/GENESIS/Hyperdoc/Manual-26.html#ss26.61">GENESIS tab2Dchannel
+reference</a>.</p></li>
+<li><p><strong>CaConc</strong>
+This is a pool of Ca ions in each compartment, in a shell volume
+under the cell membrane. The dynamical Ca concentration increases
+when Ca channels open, and decays back to resting with a specified
+time constant τ. Its concentration controls Ca-dependent K channels,
+etc.</p>
+<ul>
+<li><dl>
+<dt>Ca</dt><dd><p>Ca concentration in the pool in units mM ( i.e., mol/m<sup>3</sup>).</p>
+<blockquote>
+<div><p>d[Ca<sup>2+</sup>]/dt = B × I<sub>Ca</sub> -
+[Ca<sup>2+</sup>]/τ</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CaBasal/Ca_base</dt><dd><p>Base Ca concentration to which the Ca decays</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>tau</dt><dd><p>time constant with which the Ca concentration decays to the base Ca level.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>B</dt><dd><p>constant in the [Ca<sup>2+</sup>] equation above.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>thick</dt><dd><p>thickness of the Ca shell within the cell membrane which is
+used to calculate B (see Chapter 19 of <a class="reference external" href="http://www.genesis-sim.org/GENESIS/iBoG/iBoGpdf/index.html">Book of GENESIS</a>.)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="elec.html" class="btn btn-neutral float-left" title="Single Neuron Electrical Aspects (BioPhysics)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elec_GUI.html" class="btn btn-neutral float-right" title="Neuronal simulations in MOOSEGUI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

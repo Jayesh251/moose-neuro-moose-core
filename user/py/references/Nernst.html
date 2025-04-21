@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nernst &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Nernst</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Nernst.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nernst">
+<h1>Nernst<a class="headerlink" href="#nernst" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Nernst">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Nernst</span></span><a class="headerlink" href="#Nernst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nernst: Calculates Nernst potential for a given ion based on Cin and Cout, the inside and outside concentrations. Immediately sends out the potential to all targets.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getE">
+<span class="sig-name descname"><span class="pre">getE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getE" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.setTemperature">
+<span class="sig-name descname"><span class="pre">setTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.setTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getTemperature">
+<span class="sig-name descname"><span class="pre">getTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.setValence">
+<span class="sig-name descname"><span class="pre">setValence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.setValence" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getValence">
+<span class="sig-name descname"><span class="pre">getValence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getValence" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.setCin">
+<span class="sig-name descname"><span class="pre">setCin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.setCin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getCin">
+<span class="sig-name descname"><span class="pre">getCin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getCin" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.setCout">
+<span class="sig-name descname"><span class="pre">setCout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.setCout" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getCout">
+<span class="sig-name descname"><span class="pre">getCout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getCout" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.setScale">
+<span class="sig-name descname"><span class="pre">setScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.setScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.getScale">
+<span class="sig-name descname"><span class="pre">getScale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.getScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.ci">
+<span class="sig-name descname"><span class="pre">ci</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.ci" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Set internal conc of ion, and immediately send out the updated E</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Nernst.co">
+<span class="sig-name descname"><span class="pre">co</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Nernst.co" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Set external conc of ion, and immediately send out the updated E</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.Eout">
+<span class="sig-name descname"><span class="pre">Eout</span></span><a class="headerlink" href="#Nernst.Eout" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>source message field</em>)      Computed reversal potential</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.E">
+<span class="sig-name descname"><span class="pre">E</span></span><a class="headerlink" href="#Nernst.E" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Computed reversal potential</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.Temperature">
+<span class="sig-name descname"><span class="pre">Temperature</span></span><a class="headerlink" href="#Nernst.Temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Temperature of cell</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.valence">
+<span class="sig-name descname"><span class="pre">valence</span></span><a class="headerlink" href="#Nernst.valence" title="Permalink to this definition">¶</a></dt>
+<dd><p>int (<em>value field</em>)      Valence of ion in Nernst calculation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.Cin">
+<span class="sig-name descname"><span class="pre">Cin</span></span><a class="headerlink" href="#Nernst.Cin" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Internal conc of ion</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.Cout">
+<span class="sig-name descname"><span class="pre">Cout</span></span><a class="headerlink" href="#Nernst.Cout" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      External conc of ion</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Nernst.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#Nernst.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Voltage scale factor</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

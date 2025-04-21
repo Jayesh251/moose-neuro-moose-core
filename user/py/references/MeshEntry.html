@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeshEntry &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MeshEntry</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/MeshEntry.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meshentry">
+<h1>MeshEntry<a class="headerlink" href="#meshentry" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="MeshEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MeshEntry</span></span><a class="headerlink" href="#MeshEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>One voxel in a chemical reaction compartment</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#MeshEntry.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for process and reinit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><a class="headerlink" href="#MeshEntry.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for updating mesh volumes and subdivisions,typically controls pool volumes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getVolume">
+<span class="sig-name descname"><span class="pre">getVolume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getVolume" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getDimensions">
+<span class="sig-name descname"><span class="pre">getDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getDimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getMeshType">
+<span class="sig-name descname"><span class="pre">getMeshType</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getMeshType" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getCoordinates">
+<span class="sig-name descname"><span class="pre">getCoordinates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getCoordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getNeighbors">
+<span class="sig-name descname"><span class="pre">getNeighbors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getNeighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getDiffusionArea">
+<span class="sig-name descname"><span class="pre">getDiffusionArea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getDiffusionArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.getDiffusionScaling">
+<span class="sig-name descname"><span class="pre">getDiffusionScaling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.getDiffusionScaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MeshEntry.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MeshEntry.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">getVolume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.remeshOut">
+<span class="sig-name descname"><span class="pre">remeshOut</span></span><a class="headerlink" href="#MeshEntry.remeshOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>double,unsigned int,unsigned int,vector&lt;unsigned int&gt;,vector&lt;double&gt; (<em>source message field</em>)      Tells the target pool or other entity that the compartment subdivision(meshing) has changed, and that it has to redo its volume and memory allocation accordingly.Arguments are: oldvol, numTotalEntries, startEntry, localIndices, volsThe vols specifies volumes of each local mesh entry. It also specifieshow many meshEntries are present on the local node.The localIndices vector is used for general load balancing only.It has a list of the all meshEntries on current node.If it is empty, we assume block load balancing. In this secondcase the contents of the current node go from startEntry to startEntry + vols.size().</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.remeshReacsOut">
+<span class="sig-name descname"><span class="pre">remeshReacsOut</span></span><a class="headerlink" href="#MeshEntry.remeshReacsOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>source message field</em>)      Tells connected enz or reac that the compartment subdivision(meshing) has changed, and that it has to redo its volume-dependent rate terms like numKf_ accordingly.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.volume">
+<span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#MeshEntry.volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Volume of this MeshEntry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.dimensions">
+<span class="sig-name descname"><span class="pre">dimensions</span></span><a class="headerlink" href="#MeshEntry.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      number of dimensions of this MeshEntry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.meshType">
+<span class="sig-name descname"><span class="pre">meshType</span></span><a class="headerlink" href="#MeshEntry.meshType" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)       The MeshType defines the shape of the mesh entry. 0: Not assigned 1: cuboid 2: cylinder 3. cylindrical shell 4: cylindrical shell segment 5: sphere 6: spherical shell 7: spherical shell segment 8: Tetrahedral</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.Coordinates">
+<span class="sig-name descname"><span class="pre">Coordinates</span></span><a class="headerlink" href="#MeshEntry.Coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Coordinates that define current MeshEntry. Depend on MeshType.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.neighbors">
+<span class="sig-name descname"><span class="pre">neighbors</span></span><a class="headerlink" href="#MeshEntry.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;unsigned int&gt; (<em>value field</em>)      Indices of other MeshEntries that this one connects to</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.DiffusionArea">
+<span class="sig-name descname"><span class="pre">DiffusionArea</span></span><a class="headerlink" href="#MeshEntry.DiffusionArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Diffusion area for geometry of interface</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MeshEntry.DiffusionScaling">
+<span class="sig-name descname"><span class="pre">DiffusionScaling</span></span><a class="headerlink" href="#MeshEntry.DiffusionScaling" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      Diffusion scaling for geometry of interface</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

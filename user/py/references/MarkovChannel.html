@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarkovChannel &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MarkovChannel</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/MarkovChannel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="markovchannel">
+<h1>MarkovChannel<a class="headerlink" href="#markovchannel" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="MarkovChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MarkovChannel</span></span><a class="headerlink" href="#MarkovChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>MarkovChannel : Multistate ion channel class.It deals with ion channels which can be found in one of multiple states, some of which are conducting. This implementation assumes the occurence of first order kinetics to calculate the probabilities of the channel being found in all states. Further, the rates of transition between these states can be constant, voltage-dependent or ligand dependent (only one ligand species). The current flow obtained from the channel is calculated in a deterministic method by solving the system of differential equations obtained from the assumptions above.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setLigandConc">
+<span class="sig-name descname"><span class="pre">setLigandConc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setLigandConc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getLigandConc">
+<span class="sig-name descname"><span class="pre">getLigandConc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getLigandConc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setVm">
+<span class="sig-name descname"><span class="pre">setVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getVm">
+<span class="sig-name descname"><span class="pre">getVm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getVm" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setNumStates">
+<span class="sig-name descname"><span class="pre">setNumStates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setNumStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getNumStates">
+<span class="sig-name descname"><span class="pre">getNumStates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getNumStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setNumOpenStates">
+<span class="sig-name descname"><span class="pre">setNumOpenStates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setNumOpenStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getNumOpenStates">
+<span class="sig-name descname"><span class="pre">getNumOpenStates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getNumOpenStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getState">
+<span class="sig-name descname"><span class="pre">getState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setInitialState">
+<span class="sig-name descname"><span class="pre">setInitialState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setInitialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getInitialState">
+<span class="sig-name descname"><span class="pre">getInitialState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getInitialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setLabels">
+<span class="sig-name descname"><span class="pre">setLabels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getLabels">
+<span class="sig-name descname"><span class="pre">getLabels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.setGbar">
+<span class="sig-name descname"><span class="pre">setGbar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.setGbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.getGbar">
+<span class="sig-name descname"><span class="pre">getGbar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.getGbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.handleLigandConc">
+<span class="sig-name descname"><span class="pre">handleLigandConc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.handleLigandConc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Deals with incoming messages containing information of ligand concentration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="MarkovChannel.handleState">
+<span class="sig-name descname"><span class="pre">handleState</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MarkovChannel.handleState" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Deals with incoming message from MarkovSolver object containing state information of the channel.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.ligandConc">
+<span class="sig-name descname"><span class="pre">ligandConc</span></span><a class="headerlink" href="#MarkovChannel.ligandConc" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Ligand concentration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.Vm">
+<span class="sig-name descname"><span class="pre">Vm</span></span><a class="headerlink" href="#MarkovChannel.Vm" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Membrane voltage.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.numStates">
+<span class="sig-name descname"><span class="pre">numStates</span></span><a class="headerlink" href="#MarkovChannel.numStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      The number of states that the channel can occupy.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.numOpenStates">
+<span class="sig-name descname"><span class="pre">numOpenStates</span></span><a class="headerlink" href="#MarkovChannel.numOpenStates" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      The number of states which are open/conducting.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.state">
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#MarkovChannel.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      This is a row vector that contains the probabilities of finding the channel in each state.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.initialState">
+<span class="sig-name descname"><span class="pre">initialState</span></span><a class="headerlink" href="#MarkovChannel.initialState" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      This is a row vector that contains the probabilities of finding the channel in each state at t = 0. The state of the channel is reset to this value during a call to reinit()</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><a class="headerlink" href="#MarkovChannel.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;string&gt; (<em>value field</em>)      Labels for each state.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="MarkovChannel.gbar">
+<span class="sig-name descname"><span class="pre">gbar</span></span><a class="headerlink" href="#MarkovChannel.gbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>vector&lt;double&gt; (<em>value field</em>)      A row vector containing the conductance associated with each of the open/conducting states.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

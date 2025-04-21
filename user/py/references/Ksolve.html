@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="English" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ksolve &mdash; MOOSE Jhangri (4.1.0 rc) documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> MOOSE
+            <img src="../../../_static/moose_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                4.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../beginner.html">Beginner Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../intermediate.html">Intermediate Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced.html">Advanced Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MOOSE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Ksolve</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user/py/references/Ksolve.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ksolve">
+<h1>Ksolve<a class="headerlink" href="#ksolve" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Ksolve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Ksolve</span></span><a class="headerlink" href="#Ksolve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.xCompt">
+<span class="sig-name descname"><span class="pre">xCompt</span></span><a class="headerlink" href="#Ksolve.xCompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for pool exchange for cross-compartment reactions. Exchanges latest values of all pools that participate in such reactions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.proc">
+<span class="sig-name descname"><span class="pre">proc</span></span><a class="headerlink" href="#Ksolve.proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for process and reinit. These are used for all regular Ksolve calculations including interfacing with the diffusion calculations by a Dsolve.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.init">
+<span class="sig-name descname"><span class="pre">init</span></span><a class="headerlink" href="#Ksolve.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>void (<em>shared message field</em>)      Shared message for initProc and initReinit. This is used when the system has cross-compartment reactions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setMethod">
+<span class="sig-name descname"><span class="pre">setMethod</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getMethod">
+<span class="sig-name descname"><span class="pre">getMethod</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getMethod" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setEpsAbs">
+<span class="sig-name descname"><span class="pre">setEpsAbs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setEpsAbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getEpsAbs">
+<span class="sig-name descname"><span class="pre">getEpsAbs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getEpsAbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setEpsRel">
+<span class="sig-name descname"><span class="pre">setEpsRel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setEpsRel" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getEpsRel">
+<span class="sig-name descname"><span class="pre">getEpsRel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getEpsRel" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setCompartment">
+<span class="sig-name descname"><span class="pre">setCompartment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setCompartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getCompartment">
+<span class="sig-name descname"><span class="pre">getCompartment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getCompartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getNumLocalVoxels">
+<span class="sig-name descname"><span class="pre">getNumLocalVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getNumLocalVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setNVec">
+<span class="sig-name descname"><span class="pre">setNVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setNVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getNVec">
+<span class="sig-name descname"><span class="pre">getNVec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getNVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setNumAllVoxels">
+<span class="sig-name descname"><span class="pre">setNumAllVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setNumAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getNumAllVoxels">
+<span class="sig-name descname"><span class="pre">getNumAllVoxels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getNumAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.setNumPools">
+<span class="sig-name descname"><span class="pre">setNumPools</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.setNumPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Assigns field value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getNumPools">
+<span class="sig-name descname"><span class="pre">getNumPools</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getNumPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getEstimatedDt">
+<span class="sig-name descname"><span class="pre">getEstimatedDt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getEstimatedDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.getStoich">
+<span class="sig-name descname"><span class="pre">getStoich</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.getStoich" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Requests field value. The requesting Element must provide a handler for the returned value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.voxelVol">
+<span class="sig-name descname"><span class="pre">voxelVol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.voxelVol" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles updates to all voxels. Comes from parent ChemCompt object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.xComptIn">
+<span class="sig-name descname"><span class="pre">xComptIn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.xComptIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles arriving pool 'n' values used in cross-compartment reactions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles process call from Clock</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.reinit">
+<span class="sig-name descname"><span class="pre">reinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.reinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles reinit call from Clock</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.initProc">
+<span class="sig-name descname"><span class="pre">initProc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.initProc" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles initProc call from Clock</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Ksolve.initReinit">
+<span class="sig-name descname"><span class="pre">initReinit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Ksolve.initReinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<em>destination message field</em>)      Handles initReinit call from Clock</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.xComptOut">
+<span class="sig-name descname"><span class="pre">xComptOut</span></span><a class="headerlink" href="#Ksolve.xComptOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id,vector&lt;double&gt; (<em>source message field</em>)      Sends 'n' of all molecules participating in cross-compartment reactions between any juxtaposed voxels between current compt and another compartment. This includes molecules local to this compartment, as well as proxy molecules belonging elsewhere. A(t+1) = (Alocal(t+1) + AremoteProxy(t+1)) - Alocal(t) A(t+1) = (Aremote(t+1) + Aproxy(t+1)) - Aproxy(t) Then we update A on the respective solvers with: Alocal(t+1) = Aproxy(t+1) = A(t+1) This is equivalent to sending dA over on each timestep.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.method">
+<span class="sig-name descname"><span class="pre">method</span></span><a class="headerlink" href="#Ksolve.method" title="Permalink to this definition">¶</a></dt>
+<dd><p>string (<em>value field</em>)      Integration method, using GSL. So far only explict. Options are:rk5: The default Runge-Kutta-Fehlberg 5th order adaptive dt methodgsl: alias for the aboverk4: The Runge-Kutta 4th order fixed dt methodrk2: The Runge-Kutta 2,3 embedded fixed dt methodrkck: The Runge-Kutta Cash-Karp (4,5) methodrk8: The Runge-Kutta Prince-Dormand (8,9) method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.epsAbs">
+<span class="sig-name descname"><span class="pre">epsAbs</span></span><a class="headerlink" href="#Ksolve.epsAbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Absolute permissible integration error range.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.epsRel">
+<span class="sig-name descname"><span class="pre">epsRel</span></span><a class="headerlink" href="#Ksolve.epsRel" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Relative permissible integration error range.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.compartment">
+<span class="sig-name descname"><span class="pre">compartment</span></span><a class="headerlink" href="#Ksolve.compartment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id (<em>value field</em>)      Compartment in which the Ksolve reaction system lives.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.numLocalVoxels">
+<span class="sig-name descname"><span class="pre">numLocalVoxels</span></span><a class="headerlink" href="#Ksolve.numLocalVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of voxels in the core reac-diff system, on the current solver.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.numAllVoxels">
+<span class="sig-name descname"><span class="pre">numAllVoxels</span></span><a class="headerlink" href="#Ksolve.numAllVoxels" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of voxels in the entire reac-diff system, including proxy voxels to represent abutting compartments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.numPools">
+<span class="sig-name descname"><span class="pre">numPools</span></span><a class="headerlink" href="#Ksolve.numPools" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int (<em>value field</em>)      Number of molecular pools in the entire reac-diff system, including variable, function and buffered.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.estimatedDt">
+<span class="sig-name descname"><span class="pre">estimatedDt</span></span><a class="headerlink" href="#Ksolve.estimatedDt" title="Permalink to this definition">¶</a></dt>
+<dd><p>double (<em>value field</em>)      Estimated timestep for reac system based on Euler error</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.stoich">
+<span class="sig-name descname"><span class="pre">stoich</span></span><a class="headerlink" href="#Ksolve.stoich" title="Permalink to this definition">¶</a></dt>
+<dd><p>Id (<em>value field</em>)      Id for stoichiometry object tied to this Ksolve</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Ksolve.nVec">
+<span class="sig-name descname"><span class="pre">nVec</span></span><a class="headerlink" href="#Ksolve.nVec" title="Permalink to this definition">¶</a></dt>
+<dd><p>unsigned int,vector&lt;double&gt; (<em>lookup field</em>)      vector of pool counts. Index specifies which voxel.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Upinder Bhalla, Niraj Dudani, Subhasis Ray, Aditya Gilra,Harsha Rani, Aviral Goel, Dilawar Singh,Malav Shah, Dhruva Gowda Storz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
