@@ -1,4 +1,4 @@
-MOOSE Documentation
+MOOSE Docs
 ==============================
 
 
