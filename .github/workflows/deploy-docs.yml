@@ -16,10 +16,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # Install the same version of Sphinx using locally
-        pip install sphinx==5.3.0 sphinx-rtd-theme==1.0.0
         # Install dependencies from requirements file
         pip install -r docs/readthedocs-pip-requirements.txt
+    - name: Install Make (if needed)
+      run: sudo apt-get install -y make  # Only if 'make' is missing
     - name: Build documentation
       run: |
         cd docs
@@ -30,3 +30,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/build/html
         enable_jekyll: false
+
