@@ -16,8 +16,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install sphinx sphinx_rtd_theme
-        pip install -r docs/requirements.txt || true
+        # Install the same version of Sphinx using locally
+        pip install sphinx==5.3.0 sphinx-rtd-theme==1.0.0
+        # Install dependencies from requirements file
+        pip install -r docs/readthedocs-pip-requirements.txt
     - name: Build documentation
       run: |
         cd docs
