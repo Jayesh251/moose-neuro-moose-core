@@ -7,7 +7,7 @@ requires = [
          'pybind11[global]']
 
 [project]
-name = 'pymoose'
+name = 'MooseNeuro'
 # dynamic = ['version']
 version = '4.1.0'
 description = 'Python scripting interface of MOOSE Simulator (https://moose.ncbs.res.in)'

@@ -2,30 +2,39 @@ name: Python package
 
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   build_wheel:
     runs-on: ${{ matrix.os }}    
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-14, macos-15, windows-latest]
+        os: [ubuntu-latest, macos-14, windows-latest]
         build_type: [Release]
         c_compiler: [clang]
         python-version: ['3.11']
-        # python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
     steps:
       - uses: actions/checkout@v4
-        
+
       - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Install cibuildwheel
         run: python -m pip install cibuildwheel==2.21.3
-        
-      - name: MacOS dpendencies
+
+      - name: Install Twine
+        run: python -m pip install twine  # Install Twine for uploading the package
+
+      - name: MacOS dependencies
         if: ${{ runner.os == 'macOS' }}
         run: |
-          brew install gsl
-          brew install hdf5          
+          brew uninstall pkg-config || echo "pkg-config not installed, skipping uninstallation."
+          brew uninstall pkg-config@0.29.2 || echo "pkg-config@0.29.2 not available, skipping uninstallation."
+          brew install gsl hdf5
+      
       - name: Windows dependencies
         if: ${{ runner.os == 'Windows' }}
         uses: mamba-org/setup-micromamba@v1
@@ -69,7 +78,7 @@ jobs:
           CIBW_BUILD: '*-manylinux_x86_64'
           CIBW_SKIP: 'pp*'
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
-          CIBW_MANYLINUX_PYPY_X86_64_IMAGE: manylinux_2_28          
+          CIBW_MANYLINUX_PYPY_X86_64_IMAGE: manylinux_2_28
         run: |
           python -m cibuildwheel --output-dir wheelhouse
           ls wheelhouse
@@ -83,7 +92,7 @@ jobs:
               brew uninstall pkg-config@0.29.2 || :
                 brew install gsl hdf5 meson ninja cmake &&
             export PKG_CONFIG=`which pkg-config` &&
-            echo "<<<<<<<<<#########################################>>>>>>>>>>" &&
+            echo "<<<<<<<<<<##########################################>>>>>>>>>>" &&
             echo "$$$$$ `pkg-config --libs gsl`" &&
             echo "@@@@@ `pkg-config --cflags gsl`"
           CIBW_ARCHS: 'arm64'
@@ -104,10 +113,14 @@ jobs:
           micromamba activate moose
           python -m cibuildwheel --output-dir wheelhouse
           dir wheelhouse
-      - name: Upload packages
-        if: github.ref == 'refs/heads/main'
-        uses: xresloader/upload-to-github-release@v1
+      - name: Upload to PyPI
+        if: always()
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: "wheelhouse/pymoose*.whl"
+          TWINE_USERNAME: __token__  # Use __token__ as the username
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Use the secret with your PyPI token as the password
+        run: |
+          python -m pip install --upgrade twine  # Ensure Twine is installed again
+          python -m twine --version  # Debug: Check Twine version
+          which python  # Debug: Ensure Python is available
+          which twine  # Debug: Check if Twine is correctly installed
+          python -m twine upload wheelhouse/*.whl  # Upload the built wheels to PyPI
