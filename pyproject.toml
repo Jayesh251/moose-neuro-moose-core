@@ -16,7 +16,7 @@ classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Science/Research',
     'Intended Audience :: Developers',
-    'License :: OSI Approved :: GPL 3',
+    'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
     'Programming Language :: C',
     'Programming Language :: C++',
     'Programming Language :: Python',
