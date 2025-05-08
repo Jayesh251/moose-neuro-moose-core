@@ -110,7 +110,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "wheelhouse/moose-core*.whl"
+          file: "wheelhouse/moose_core*.whl"
       - name: Upload to PyPI
         if: github.ref == 'refs/heads/master' && success()
         env:
