@@ -114,12 +114,15 @@ jobs:
       - name: Upload to PyPI
         if: github.ref == 'refs/heads/master' && success()
         env:
-          TWINE_USERNAME: __token__  # Use __token__ as the username
-          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}  # PyPI token stored in GitHub Secrets
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
         run: |
-          python3 -m pip install --upgrade twine  # Ensure Twine is installed
-          python3 -m twine --version  # Debug: Check Twine version
-          which python3  # Debug: Ensure Python is available
-          which twine  # Debug: Check Twine installation
-          ls wheelhouse/  # Debug: Check if wheels exist
-          python3 -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*.whl
+          python3 -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade twine
+          python -m twine --version
+          which python
+          which twine
+          ls wheelhouse/
+          python -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*.whl
