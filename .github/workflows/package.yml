@@ -117,12 +117,9 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
         run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          python -m pip install --upgrade pip
           python -m pip install --upgrade twine
-          python -m twine --version
-          which python
-          which twine
+          python -m twine --version  # Debug: Check Twine version
+          which python  # Debug: Ensure Python is available
+          which twine  # Debug: Check if Twine is correctly installed
           ls wheelhouse/
           python -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*.whl
