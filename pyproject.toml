@@ -9,7 +9,7 @@ requires = [
 [project]
 name = 'moose-core'
 # dynamic = ['version']
-version = '4.1.0'
+version = '4.1.1'
 description = 'Python scripting interface of MOOSE Simulator (https://moose.ncbs.res.in)'
 readme = 'README.md'
 classifiers = [
