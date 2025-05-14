@@ -112,23 +112,13 @@ jobs:
         with:
           file: "wheelhouse/moose_core*.whl"
       - name: Upload to PyPI
-        if: github.ref == 'refs/heads/master' && success()
+        if: always()
         env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          TWINE_USERNAME: __token__  # Use __token__ as the username
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Use the secret with your PyPI token as the password
         run: |
-          # For macOS arm64, need to ensure Python is available
-          if [ "${{ runner.os }}" == "macOS" ]; then
-            # Re-use the Python already set up by the setup-python action
-            python3 -m pip install --upgrade twine
-            python3 -m twine --version
-            which python3
-            ls wheelhouse/
-            python3 -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*.whl
-          else
-            python -m pip install --upgrade twine
-            python -m twine --version
-            which python
-            ls wheelhouse/
-            python -m twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/*.whl
-          fi
+          python -m pip install --upgrade twine  # Ensure Twine is installed again
+          python -m twine --version  # Debug: Check Twine version
+          which python  # Debug: Ensure Python is available
+          which twine  # Debug: Check if Twine is correctly installed
+          python -m twine upload wheelhouse/*.whl  # Upload the built wheels to PyPI
