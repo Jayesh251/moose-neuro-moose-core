@@ -111,14 +111,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "wheelhouse/moose_core*.whl"
+      - name: Set up Python (for Twine)
+        uses: actions/setup-python@v5
+        with:
+         python-version: '3.11'
       - name: Upload to PyPI
         if: always()
         env:
           TWINE_USERNAME: __token__  # Use __token__ as the username
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}  # Use the secret with your PyPI token as the password
         run: |
-          python3 -m pip install --upgrade twine  # Ensure Twine is installed again
-          python3 -m twine --version  # Debug: Check Twine version
-          which python3  # Debug: Ensure Python is available
+          python -m pip install --upgrade twine  # Ensure Twine is installed again
+          python -m twine --version  # Debug: Check Twine version
+          which python  # Debug: Ensure Python is available
           which twine  # Debug: Check if Twine is correctly installed
-          python3 -m twine upload wheelhouse/*.whl  # Upload the built wheels to PyPI
+          python -m twine upload wheelhouse/*.whl  # Upload the built wheels to PyPI
