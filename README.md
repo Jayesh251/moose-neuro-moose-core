@@ -1,4 +1,4 @@
-[![Python package](https://github.com/BhallaLab/moose-core/actions/workflows/pymoose.yml/badge.svg)](https://github.com/BhallaLab/moose-core/actions/workflows/pymoose.yml)
+![image](https://github.com/user-attachments/assets/11ac314c-7c55-4f2b-8bc9-652954aea65c)[![Python package](https://github.com/BhallaLab/moose-core/actions/workflows/pymoose.yml/badge.svg)](https://github.com/BhallaLab/moose-core/actions/workflows/pymoose.yml)
 
 # MOOSE
 
@@ -47,7 +47,7 @@ information see:
 - MacOSX: [AppleM1Build.md](AppleM1Build.md)
 - Windows: [WindowsBuild.md](WindowsBuild.md)
 
-# ABOUT VERSION 4.1.0, `Jhangri`
+# ABOUT VERSION 4.1.1, `Jhangri`
 
 [`Jhangri`](https://en.wikipedia.org/wiki/Imarti) is an Indian sweet
 in the shape of a flower. It is made of white-lentil (*Vigna mungo*)
@@ -55,17 +55,24 @@ batter, deep-fried in ornamental shape to form the crunchy, golden
 body, which is then soaked in sugar syrup lightly flavoured with
 spices.
 
-This release has the following major changes:
+This release has the following changes:
 
-1. Improved support for reading NeuroML2 models
-2. `HHGate2D`: separate `xminA`, `xminB`, etc. for `A` and `B` tables
-   replaced by single `xmin`, `xmax`, `xdivs`, `ymin`, `ymax`, and
-   `ydivs` fields for both tables.
-2. Build system switched from cmake to meson
-2. Native binaries for Windows
-6. Updated to conform to c/c++-17 standard
-7. Various bugfixes
+# New Features
+1. Formula-based versions of HH-type channels – Added `HHChannelF2D` and `HHGateF2D` for formula-based evaluation and updated `HHGate` support.
+2. Extended `neighbors` functionality – Now supports retrieving all neighbors across all fields.
 
+# API Updates
+1. API changes in  `moose.vec` and `moose.element,` including updated documentation.
+
+# Documentation
+1. Updated `Ubuntu` build instructions for better clarity.
+2. Enhanced documentation for `HHGate`, including additional warnings.
+3. Updated documentation for `Stoich,` with improved code comments and clarifications.
+
+# Bug Fixes
+1. Minor fixes to `HHChannel2D,` `HHGate;` removed duplicate tests.
+2. Various bug fixes and improvements to functionality.
+   
 # LICENSE
 
 MOOSE is released under GPLv3.
