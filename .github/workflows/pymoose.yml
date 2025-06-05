@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-14, windows-latest]
+        os: [ubuntu-22.04, macos-14, macos-15, windows-latest]
         build_type: [Release]
         c_compiler: [clang]
         python-version: ["3.12"]
@@ -17,6 +17,8 @@ jobs:
             apt: 10  # Linux will install the latest GSL version
           - os: macos-14
             brew: 20  # macOS will install the latest GSL version
+          - os: macos-15
+            brew: 20  
           - os: windows-latest
             winget: 30
             gsl_version: "2.6"
