@@ -105,9 +105,6 @@ Now you can import moose in a Python script or interpreter with the statement:
 - Improved GitHub Actions workflows for release packages
 - Enabled manual triggering of release workflows
 - Fixed permission issues during GitHub release creation
-
-# Documentation
-INSTALL.md rewritten for clearer, up-to-date installation instructions (PyPI and from-source code installation).
    
 # LICENSE
 
